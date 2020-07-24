@@ -3,6 +3,12 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+model-viewer {
+  width: 800px;
+  height: 800px;
+}
+
 a {
   color: #00B7FF;
 }
+w
