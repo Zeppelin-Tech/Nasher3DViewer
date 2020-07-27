@@ -3,9 +3,22 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let mysql = require('mysql')
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+
+// Create connection
+let con = mysql.createConnection({
+  host: 'localhost',
+  database: "testDB"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
 
 let app = express();
 

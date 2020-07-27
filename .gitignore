@@ -7,3 +7,7 @@
 
 # Node Stuff
 node_modules/
+bin/
+
+# OS X
+.DS_Store
