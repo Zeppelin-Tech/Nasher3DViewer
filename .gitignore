@@ -8,3 +8,4 @@
 # Node Stuff
 node_modules/
 bin/
+public/.DS_Store
