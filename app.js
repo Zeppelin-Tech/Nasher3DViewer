@@ -1,8 +1,9 @@
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const request = require('request');
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
@@ -44,19 +45,10 @@ module.exports = app;
 let objectID = '11051';
 let requestURL = 'https://emuseum.nasher.duke.edu/objects/' + objectID + '/json';
 
-// Replace testURL with requestURL when whitelisted
-testURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
-
-let request = new XMLHttpRequest();
-console.log(requestURL);
-
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-
-request.onload = function() {
-  const relicData = request.response;
-  console.log(relicData);
-
-  // json data now stored in a javascript object
-}
+request(requestURL, { json: true, "rejectUnauthorized": false}, (err, res, body) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(body);
+  }
+})
