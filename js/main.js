@@ -1,8 +1,26 @@
 "use strict";
 
+
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);    // grab parameters from URL
+    var vars = query.split("&");
+
+    for (var i = 0; i < vars.length; i++) {
+
+        var pair = vars[i].split("=");
+
+        if (pair[0] == variable) {
+            return pair[1];
+        }
+    }
+    return (false);
+}
+
+console.log(getQueryVariable("embed"))
+
+
 // import * as data from 'json/sample.json';
 // const {name} = data;
-
 
 let data = JSON.parse("{\n" +
     "\t\"title\": \"Some 3D Collection\",\n" +
