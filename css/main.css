@@ -275,8 +275,8 @@ textarea {
 
 #info {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1em;
+  right: 1em;
 }
 
 .slider {
