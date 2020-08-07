@@ -54,10 +54,8 @@ function main() {
 }
 
 function initMaterializeComponents() {
-    document.addEventListener('DOMContentLoaded', function() {
-        let elems = document.querySelectorAll('.fixed-action-btn');
-        let instances = M.FloatingActionButton.init(elems, options);
-    });
+    let carousels = document.querySelectorAll('.carousel');
+    let carouselInstances = M.Carousel.init(carousels, null);
 }
 
 
