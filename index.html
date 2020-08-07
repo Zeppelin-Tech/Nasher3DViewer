@@ -20,7 +20,6 @@
 
 <body onload="main()">
 
-
 <model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer">
   <div class="slider">
     <div class="slides">
@@ -28,6 +27,14 @@
       <button class="slide selected" onclick="switchModel(this, 1)" style="background-image: url(models/9671.png);"></button></div>
   </div>
 </model-viewer>
+
+<img src="img/logo.png" alt="Nasher museum logo" id="logo"/>
+
+<div class="fixed-action-btn" id="info">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+</div>
 
 </body>
 

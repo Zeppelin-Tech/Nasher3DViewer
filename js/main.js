@@ -48,8 +48,16 @@ function main() {
         }
     }
 
+    initMaterializeComponents();
 
     window.switchModel = updateModel;
+}
+
+function initMaterializeComponents() {
+    document.addEventListener('DOMContentLoaded', function() {
+        let elems = document.querySelectorAll('.fixed-action-btn');
+        let instances = M.FloatingActionButton.init(elems, options);
+    });
 }
 
 
