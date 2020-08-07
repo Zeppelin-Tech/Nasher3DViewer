@@ -66,10 +66,18 @@ function main() {
         }
     }
 
+    initMaterializeComponents();
 
     window.switchModel = updateModel;
 }
 
+function initMaterializeComponents() {
+    let carousels = document.querySelectorAll('.carousel');
+    let carouselInstances = M.Carousel.init(carousels, null);
+}
+
+
+// TODO: just put all the model updating in a class maybe?
 function updateModel(element, index) {
     let modelViewer = document.querySelector("model-viewer");
 
