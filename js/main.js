@@ -16,7 +16,14 @@ function getQueryVariable(variable) {
     return (false);
 }
 
-console.log(getQueryVariable("embed"))
+// modify page based on URL parameters
+let embedded = getQueryVariable("embed") === "true"
+console.log(embedded)
+
+if (embedded) {
+    let logo = document.getElementById("logo");
+    logo.style.display = "none";
+}
 
 
 // import * as data from 'json/sample.json';
