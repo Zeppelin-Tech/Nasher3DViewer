@@ -279,6 +279,28 @@ textarea {
   right: 1em;
 }
 
+#infobox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25em;
+  height: 50em;
+  background-color: white;
+  z-index: 10;
+  display: none;
+}
+
+#infoclose {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: black;
+}
+
+body {
+  overflow: hidden;
+}
+
 .slider {
   width: 100%;
   text-align: center;

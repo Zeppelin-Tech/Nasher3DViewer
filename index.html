@@ -26,6 +26,9 @@
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/0af12b5bbc.js" crossorigin="anonymous"></script>
 
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+
 </head>
 
 <body onload="main()">
@@ -37,9 +40,24 @@
 
 <a class="btn-floating btn-large waves-effect waves-light red" id="info"><i class="fas fa-info"></i></a>
 
+<div id="infobox">
+  <a class="waves-effect waves-grey btn-flat" id="infoclose"><i class="fas fa-times"></i></a>
+  <h3>Alife Arch</h3>
+  <p>It's an arch</p>
+</div>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Alife Arch</h4>
+    <p>An arch</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
 <script type="module">
     const modelViewer = document.querySelector("model-viewer");
-
 </script>
 
 </html>
