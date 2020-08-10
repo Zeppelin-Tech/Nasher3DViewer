@@ -2,37 +2,46 @@
 <html class="no-js" lang="">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
 
-  <meta name="theme-color" content="#fafafa">
+    <meta name="theme-color" content="#fafafa">
 
-  <script src="json/sample.json"></script>
-  <script src="js/main.js"></script>
-  <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <script src="json/sample.json"></script>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body onload="main()">
-
-<h1> Alife Arch</h1>
-
 <model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer">
-  <div class="slider">
-    <div class="slides"><button class="slide" onclick="switchModel(this, 0)" style="background-image: url(/models/2213.png);">test + 0</button><button class="slide selected" onclick="switchModel(this, 1)" style="background-image: url(/models/9671.png);">test + 1</button></div>
-  </div>
+    <div class="slider">
+        <div class="slides">
+            <button class="slide" onclick="switchModel(this, 0)" style="background-image: url(models/2213.png);">test +
+                0
+            </button>
+            <button class="slide selected" onclick="switchModel(this, 1)"
+                    style="background-image: url(models/9671.png);">test + 1
+            </button>
+        </div>
+    </div>
 </model-viewer>
 
 </body>
 
 <script type="module">
     const modelViewer = document.querySelector("model-viewer");
-
 </script>
 
 </html>
