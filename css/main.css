@@ -266,3 +266,36 @@ textarea {
   min-width: 100%;
   min-height: 100%;
 }
+
+#modelSelector {
+  position: absolute;
+  height: 30%;
+  bottom: 0;
+}
+#models {
+  position: relative;
+  display: flex;
+  margin: auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+#models > .slide {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  margin-right: 10px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+}
+
+#models > .slide.selected {
+  border: 2px solid #0062b2
+}
