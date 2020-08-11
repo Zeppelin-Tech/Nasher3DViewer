@@ -2,23 +2,32 @@
 <html class="no-js" lang="">
 
 <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
 
-    <meta name="theme-color" content="#fafafa">
+  <meta name="theme-color" content="#fafafa">
 
-    <script src="json/sample.json"></script>
-    <script src="js/main.js"></script>
-    <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+  <script src="json/sample.json"></script>
+  <script src="js/main.js"></script>
+  <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
-    <!-- Materialize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/0af12b5bbc.js" crossorigin="anonymous"></script>
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -31,7 +40,7 @@
     <div class="slider" id="modelSelector">
         <div id="scrollBarHider">
             <i class="medium material-icons">keyboard_arrow_up</i>
-<!--            <i class="material-icons">keyboard_arrow_up</i>-->
+            <!--            <i class="material-icons">keyboard_arrow_up</i>-->
         </div>
         <div class="slides" id="models">
             <button class="slide selected" onclick="switchModel(this, 0)" style="background-image: url(models/2213.png);"></button>
@@ -42,6 +51,16 @@
     </div>
 </model-viewer>
 
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Alife Arch</h4>
+        <p>An arch</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
 </body>
 
 <script type="module">
