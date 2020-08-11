@@ -7,9 +7,6 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-
   <meta name="theme-color" content="#fafafa">
 
   <script src="json/sample.json"></script>
@@ -29,31 +26,56 @@
   <!-- Animate CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body onload="main()">
 
-<model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer">
+<model-viewer src="models/2213.glb" auto-rotate camera-controls data-js-focus-visible ar-status="not-presenting" id="viewer">
 </model-viewer>
 
 <img src="img/logo.png" alt="Nasher museum logo" id="logo"/>
 
-<a class="btn-floating btn-large waves-effect waves-light red" id="info"><i class="fas fa-info"></i></a>
+<a class="btn-floating btn-large waves-effect waves-light" id="info"><i class="fas fa-info"></i></a>
 
 <div id="infobox">
   <a class="waves-effect waves-grey btn-flat" id="infoclose"><i class="fas fa-times"></i></a>
-  <h3>Alife Arch</h3>
-  <p>It's an arch</p>
-</div>
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="fas fa-tag"></i>Title</div>
+      <div class="collapsible-body"><span id="titlespan">Placeholder</span></div>
+    </li>
+    <li id="labelouter">
+      <div class="collapsible-header"><i class="fas fa-scroll"></i>Label</div>
+      <div class="collapsible-body"><span id="labelspan">Placeholder</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="fas fa-user"></i>Artist / Maker / Culture</div>
+      <div class="collapsible-body"><span id="artistspan">Placeholder</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="fas fa-box"></i>Classification</div>
+      <div class="collapsible-body"><span id="classificationspan">Placeholder</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="fas fa-hammer"></i>Medium</div>
+      <div class="collapsible-body"><span id="mediumspan">Placeholder</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="fas fa-ruler-combined"></i>Dimensions</div>
+      <div class="collapsible-body"><span id="dimensionspan">Placeholder</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="far fa-copyright"></i>Credit</div>
+      <div class="collapsible-body"><span id="creditspan">Placeholder</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="fas fa-archive"></i>Object Number</div>
+      <div class="collapsible-body"><span id="numberspan">Placeholder</span></div>
+    </li>
+  </ul>
 
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Alife Arch</h4>
-    <p>An arch</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-  </div>
 </div>
 
 <script type="module">

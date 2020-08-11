@@ -3,8 +3,6 @@
 // import * as data from 'json/sample.json';
 // const {name} = data;
 
-let modalInstance;
-
 let data = JSON.parse("{\n" +
     "\t\"title\": \"Some 3D Collection\",\n" +
     "\t\"desc\": \"This is a description of this particular collection of 3D objects.\",\n" +
@@ -56,14 +54,15 @@ function main() {
     document.getElementById("info").onclick = pressedInfoDiv;
     document.getElementById("infoclose").onclick = closedInfo;
 
+    // Load the information for the object we are viewing
+    loadObjectInfo();
+
     window.switchModel = updateModel;
 }
 
 function initMaterializeComponents() {
-    let elems = document.querySelectorAll('.modal');
-    let instances = M.Modal.init(elems, null);
-
-    modalInstance = instances[0];
+    let collapsibleElems = document.querySelectorAll('.collapsible');
+    let collapsibleInstances = M.Collapsible.init(collapsibleElems, null);
 }
 
 function pressedInfoDiv() {
@@ -79,8 +78,85 @@ function closedInfo() {
     box.classList.add('animate__animated', 'animate__slideOutRight');
 }
 
-function pressedInfoModal() {
-    modalInstance.open();
+// TODO; Eventually, we will have to load data for the object we are viewing, but for now we cannot request that from the browser.
+function loadObjectInfo() {
+    let req = new XMLHttpRequest();
+
+    // Get elements where we are placing the info
+    let titleSpan = document.getElementById("titlespan");
+    let labelSpan = document.getElementById("labelspan");
+    let artistSpan = document.getElementById("artistspan");
+    let classificationSpan = document.getElementById("classificationspan");
+    let mediumSpan = document.getElementById("mediumspan");
+    let creditSpan = document.getElementById("creditspan");
+    let numberSpan = document.getElementById("numberspan");
+    let dimensionSpan = document.getElementById("dimensionspan");
+
+    // Set up request callback
+    req.onreadystatechange = function () {
+        if (req.readyState === 4 && req.status === 200) {
+            let obj = JSON.parse(req.responseText).object;
+
+            // Title
+            if (obj.hasOwnProperty("title")) {
+                titleSpan.innerText = obj.title.value;
+            } else {
+                titleSpan.parentElement.parentElement.remove();
+            }
+
+            // Label
+            if (obj.hasOwnProperty("labelText")) {
+                labelSpan.innerText = obj.labelText.value;
+            } else {
+                labelSpan.parentElement.parentElement.remove();
+            }
+
+            // Artist
+            if (obj.hasOwnProperty("people")) {
+                artistSpan.innerText = obj.people.value;
+            } else {
+                artistSpan.parentElement.parentElement.remove();
+            }
+
+            // Classification
+            if (obj.hasOwnProperty("classification")) {
+                classificationSpan.innerText = obj.classification.value;
+            } else {
+                classificationSpan.parentElement.parentElement.remove();
+            }
+
+            // Medium
+            if (obj.hasOwnProperty("medium")) {
+                mediumSpan.innerText = obj.medium.value;
+            } else {
+                mediumSpan.parentElement.parentElement.remove();
+            }
+
+            // Credit
+            if (obj.hasOwnProperty("creditline")) {
+                creditSpan.innerText = obj.creditline.value;
+            } else {
+                creditSpan.parentElement.parentElement.remove();
+            }
+
+            // Object Number
+            if (obj.hasOwnProperty("invno")) {
+                numberSpan.innerText = obj.invno.value;
+            } else {
+                numberSpan.parentElement.parentElement.remove();
+            }
+
+            if (obj.hasOwnProperty("dimensions")) {
+                dimensionSpan.innerText = obj.dimensions.value;
+            } else {
+                dimensionSpan.parentElement.parentElement.remove();
+            }
+        }
+    }
+
+    // Form and send async request for JSON data
+    req.open("GET", "models/2213.json", true);
+    req.send();
 }
 
 // TODO: just put all the model updating in a class maybe?
