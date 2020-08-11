@@ -2,28 +2,28 @@
 <html class="no-js" lang="">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Model Viewer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-  <meta name="theme-color" content="#fafafa">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <meta name="theme-color" content="#fafafa">
 
-  <script src="json/sample.json"></script>
-  <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <script src="json/sample.json"></script>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
-  <!-- Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <!-- Materialize JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/0af12b5bbc.js" crossorigin="anonymous"></script>
-
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/0af12b5bbc.js" crossorigin="anonymous"></script>
 </head>
 
 <body onload="main()">
@@ -35,10 +35,14 @@
 
 <a class="btn-floating btn-large waves-effect waves-light red" id="info"><i class="fas fa-info"></i></a>
 
-<script type="module">
-    const modelViewer = document.querySelector("model-viewer");
+<script type="module"> const modelViewer = document.querySelector("model-viewer"); </script>
 
-</script>
+<div id="legend">
+    <h4>Legend</h4>
+    <ul id="hotspotList">
+    </ul>
+</div>
 
-<script src="js/main.js"></script>
+</body>
+
 </html>

@@ -1,31 +1,5 @@
 "use strict";
 
-
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);    // grab parameters from URL
-    var vars = query.split("&");
-
-    for (var i = 0; i < vars.length; i++) {
-
-        var pair = vars[i].split("=");
-
-        if (pair[0] == variable) {
-            return pair[1];
-        }
-    }
-    return (false);
-}
-
-// modify page based on URL parameters
-let embedded = getQueryVariable("embed") === "true"
-console.log(embedded)
-
-if (embedded) {
-    let logo = document.getElementById("logo");
-    logo.style.display = "none";
-}
-
-
 // import * as data from 'json/sample.json';
 // const {name} = data;
 
@@ -39,13 +13,13 @@ let data = JSON.parse("{\n" +
     "\t\t\t\"src\": \"models/2213.glb\",\n" +
     "\t\t\t\"ios\": \"models.2213.usdz\",\n" +
     "\t\t\t\"hotspots\": [{\n" +
-    "\t\t\t\t\t\"label\": \"Something cool\",\n" +
+    "\t\t\t\t\t\"label\": \"SOMETHING 1\",\n" +
     "\t\t\t\t\t\"position\": \"0.4007812111279194m 0.5728657373429219m 1.097146245737618m\",\n" +
     "\t\t\t\t\t\"normal\": \"0.16744492173726025m 0.8337560844961998m 0.5261302022788354m\",\n" +
     "\t\t\t\t\t\"visibility\": \"visible\"\n" +
     "\t\t\t\t},\n" +
     "\t\t\t\t{\n" +
-    "\t\t\t\t\t\"label\": \"Something else cool\",\n" +
+    "\t\t\t\t\t\"label\": \"SOMETHING 2\",\n" +
     "\t\t\t\t\t\"position\": \"-0.5732061558897641m 0.5330821278667062m 0.9063000376948391m\",\n" +
     "\t\t\t\t\t\"normal\": \"-0.9294973541164393m -0.05834724631259222m 0.364184386730508m\",\n" +
     "\t\t\t\t\t\"visibility\": \"visible\"\n" +
@@ -63,17 +37,43 @@ let data = JSON.parse("{\n" +
     "}");
 
 function main() {
-    let viewer = document.querySelector("model-viewer")
 
-    const firstModel = data.objects[0]
+    // modify page based on URL parameters
+    let embedded = getQueryVariable("embed") === "true";
+    console.log(embedded);
+
+    if (embedded) {
+        let logo = document.getElementById("logo");
+        logo.style.display = "none";
+    }
+
+    // initialize model viewer
+    let viewer = document.querySelector("model-viewer");
+
+    const firstModel = data.objects[0];
     if (firstModel.hasOwnProperty('hotspots')) {
         for (let i = 0; i < firstModel.hotspots.length; i++) {
 
-            viewer.appendChild(createHotspot(firstModel.hotspots[i], "hotspot_" + i))
+            viewer.appendChild(createHotspot(firstModel.hotspots[i], "hotspot_" + i));
         }
     }
 
     window.switchModel = updateModel;
+}
+
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);    // grab parameters from URL
+    var vars = query.split("&");
+
+    for (var i = 0; i < vars.length; i++) {
+
+        var pair = vars[i].split("=");
+
+        if (pair[0] === variable) {
+            return pair[1];
+        }
+    }
+    return false;
 }
 
 // TODO: just put all the model updating in a class maybe?
@@ -88,7 +88,7 @@ function updateModel(element, index) {
     element.classList.add("selected");
 
     for (let i = 0; i < modelViewer.children.length; i++) {
-        const child = modelViewer.children[i]
+        const child = modelViewer.children[i];
         if (child.className === "Hotspot") {
             modelViewer.removeChild(child);
             i--;
@@ -106,21 +106,46 @@ function updateModel(element, index) {
 function createHotspot(hotspot, slot) {
     let newHotspot = document.createElement("button");
 
-    newHotspot.setAttribute("class", "Hotspot");
+    newHotspot.setAttribute("class", "blue btn-floating pulse");
     newHotspot.setAttribute("slot", slot);
     newHotspot.setAttribute("data-position", hotspot.position);
     newHotspot.setAttribute("data-normal", hotspot.normal);
     newHotspot.setAttribute("data-visibility-attribute", hotspot.visibility);
     // newHotspot.setAttribute("visible", true)
 
-    newHotspot.appendChild(createHotspotAnnotation(hotspot.label))
+    newHotspot.appendChild(createHotspotAnnotation(hotspot.label));
 
-    return newHotspot
+    return newHotspot;
 }
 
+// global used to track the total number of annotations
+let counter = 0;
+let alphabet = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split("");
+
 function createHotspotAnnotation(label) {
+
+    // Add identifier to hotspot
     let annotation = document.createElement("div");
     annotation.setAttribute("class", "HotspotAnnotation");
-    annotation.innerText = label
-    return annotation
+
+    // Generate unique identifier
+    const quotient = Math.floor(counter / 26);
+    const remainder = counter % 26;
+    let identifier = "";
+
+    let i;
+    for (i = 0; i <= quotient; i++) {
+        identifier += alphabet[remainder];
+    }
+
+    annotation.innerText = identifier;
+    counter++;
+
+    // Add annotation to legend
+    let node = document.createElement("LI");
+    let textNode = document.createTextNode(identifier + " --- " + label);
+    node.appendChild(textNode);
+    document.getElementById("hotspotList").appendChild(node);
+
+    return annotation;
 }
