@@ -3,6 +3,7 @@
 // import * as data from 'json/sample.json';
 // const {name} = data;
 
+let modalInstance;
 
 let data = JSON.parse("{\n" +
     "\t\"title\": \"Some 3D Collection\",\n" +
@@ -48,10 +49,41 @@ function main() {
         }
     }
 
+    // Initialize required materialize things
+    initMaterializeComponents();
+
+    // Set up info button press callback
+    document.getElementById("info").onclick = pressedInfoDiv;
+    document.getElementById("infoclose").onclick = closedInfo;
 
     window.switchModel = updateModel;
 }
 
+function initMaterializeComponents() {
+    let elems = document.querySelectorAll('.modal');
+    let instances = M.Modal.init(elems, null);
+
+    modalInstance = instances[0];
+}
+
+function pressedInfoDiv() {
+    let box = document.getElementById("infobox");
+    box.style.display = "block";
+    box.classList.remove('animate__animated', 'animate__slideOutRight')
+    box.classList.add('animate__animated', 'animate__slideInRight');
+}
+
+function closedInfo() {
+    let box = document.getElementById("infobox");
+    box.classList.remove('animate__animated', 'animate__slideInRight')
+    box.classList.add('animate__animated', 'animate__slideOutRight');
+}
+
+function pressedInfoModal() {
+    modalInstance.open();
+}
+
+// TODO: just put all the model updating in a class maybe?
 function updateModel(element, index) {
     let modelViewer = document.querySelector("model-viewer");
 

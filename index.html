@@ -2,42 +2,74 @@
 <html class="no-js" lang="">
 
 <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
 
-    <meta name="theme-color" content="#fafafa">
+  <meta name="theme-color" content="#fafafa">
 
-    <script src="json/sample.json"></script>
-    <script src="js/main.js"></script>
-    <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+  <script src="json/sample.json"></script>
+  <script src="js/main.js"></script>
+  <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
-    <!-- Materialize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/0af12b5bbc.js" crossorigin="anonymous"></script>
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body onload="main()">
 <model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer">
-    <div class="slider">
-        <div class="slides">
-            <button class="slide" onclick="switchModel(this, 0)" style="background-image: url(models/2213.png);">test +
-                0
-            </button>
-            <button class="slide selected" onclick="switchModel(this, 1)"
-                    style="background-image: url(models/9671.png);">test + 1
+    <div class="slider" id="modelSelector">
+        <div id="scrollBarHider">
+            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+            <!--            <i class="material-icons">keyboard_arrow_up</i>-->
+        </div>
+        <div class="slides" id="models">
+            <button class="slide selected" onclick="switchModel(this, 0)" style="background-image: url(models/2213.png);"></button>
+            <button class="slide" onclick="switchModel(this, 1)"
+                    style="background-image: url(models/9671.png);">
             </button>
         </div>
     </div>
 </model-viewer>
 
+<img src="img/logo.png" alt="Nasher museum logo" id="logo"/>
+
+<a class="btn-floating btn-large waves-effect waves-light red" id="info"><i class="fas fa-info"></i></a>
+
+<div id="infobox">
+  <a class="waves-effect waves-grey btn-flat" id="infoclose"><i class="fas fa-times"></i></a>
+  <h3>Alife Arch</h3>
+  <p>It's an arch</p>
+</div>
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Alife Arch</h4>
+        <p>An arch</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
 </body>
 
 <script type="module">
