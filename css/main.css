@@ -299,3 +299,9 @@ textarea {
 #models > .slide.selected {
   border: 2px solid #0062b2
 }
+
+#scrollBarHider {
+  height: 10%;
+}
+
+
