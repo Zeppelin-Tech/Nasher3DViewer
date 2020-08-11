@@ -299,7 +299,7 @@ textarea {
 
 #modelSelector {
   position: absolute;
-  height: 30%;
+  height: 10%;
   bottom: 0;
 }
 #models {
@@ -314,14 +314,13 @@ textarea {
 #models > .slide {
   scroll-snap-align: start;
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
+  width: 0;
+  /*height: 100%;*/
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   background-color: #fff;
   margin-right: 10px;
-  border-radius: 10px;
   border: none;
   display: flex;
 }
@@ -331,7 +330,7 @@ textarea {
 }
 
 #scrollBarHider {
-  height: 10%;
+  height: 50%
 }
 
 
