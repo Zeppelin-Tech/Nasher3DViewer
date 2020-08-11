@@ -37,6 +37,16 @@ let data = JSON.parse("{\n" +
     "}");
 
 function main() {
+
+    // modify page based on URL parameters
+    let embedded = getQueryVariable("embed") === "true";
+    console.log(embedded);
+
+    if (embedded) {
+        let logo = document.getElementById("logo");
+        logo.style.display = "none";
+    }
+
     let viewer = document.querySelector("model-viewer")
 
     const firstModel = data.objects[0]
@@ -58,6 +68,21 @@ function main() {
     loadObjectInfo();
 
     window.switchModel = updateModel;
+}
+
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);    // grab parameters from URL
+    var vars = query.split("&");
+
+    for (var i = 0; i < vars.length; i++) {
+
+        var pair = vars[i].split("=");
+
+        if (pair[0] === variable) {
+            return pair[1];
+        }
+    }
+    return false;
 }
 
 function initMaterializeComponents() {
