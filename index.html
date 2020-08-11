@@ -31,8 +31,19 @@
 </head>
 
 <body onload="main()">
-
-<model-viewer src="models/2213.glb" auto-rotate camera-controls data-js-focus-visible ar-status="not-presenting" id="viewer">
+<model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer">
+    <div class="slider" id="modelSelector">
+        <div id="scrollBarHider">
+            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+            <!--            <i class="material-icons">keyboard_arrow_up</i>-->
+        </div>
+        <div class="slides" id="models">
+            <button class="slide selected" onclick="switchModel(this, 0)" style="background-image: url(models/2213.png);"></button>
+            <button class="slide" onclick="switchModel(this, 1)"
+                    style="background-image: url(models/9671.png);">
+            </button>
+        </div>
+    </div>
 </model-viewer>
 
 <img src="img/logo.png" alt="Nasher museum logo" id="logo"/>
@@ -77,6 +88,7 @@
   </ul>
 
 </div>
+</body>
 
 <script type="module">
     const modelViewer = document.querySelector("model-viewer");
