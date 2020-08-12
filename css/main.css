@@ -268,6 +268,8 @@ textarea {
 }
 
 #logo {
+  top: 1em;
+  left: 1em;
   position: absolute;
   width: 25em;
 }
@@ -373,4 +375,50 @@ body {
   height: 50%
 }
 
+.Hotspot {
+  height: 200px;
+  width: 200px;
+  border-radius: 6px;
+  background-color: #696668;
+  color: white;
+  overflow: scroll;
+}
 
+.HotspotHead {
+  padding: 5px;
+  background-color: #999999;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.HotspotLabel {
+  font-weight: bold;
+  margin-left: 5px;
+  float: left;
+}
+
+.HotspotAnnotation {
+  margin-left: 20px;
+  display: inline-block;
+}
+
+.HotspotClose {
+  height: 32px;
+  width: 16px;
+  background-image: url("../img/close.png");
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-color: #0093ff;
+  background-position: center;
+  border: none;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 6px;
+}
+
+.HotspotBody {
+  padding: 5px;
+  overflow: scroll;
+}
