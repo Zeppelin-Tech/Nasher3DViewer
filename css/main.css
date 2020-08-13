@@ -375,7 +375,19 @@ body {
   height: 50%
 }
 
-.Hotspot {
+.HotspotMinimized {
+  padding: 0;
+  height: 35px ;
+  width: 35px ;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #0093ff
+}
+
+.HotspotExpanded {
+  display: none;
   height: 200px;
   width: 200px;
   border-radius: 6px;
