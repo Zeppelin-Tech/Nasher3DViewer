@@ -385,7 +385,9 @@ body {
 }
 
 .HotspotHead {
+  position: absolute;
   padding: 5px;
+  width: 95%;
   background-color: #999999;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
@@ -420,5 +422,8 @@ body {
 
 .HotspotBody {
   padding: 5px;
-  overflow: scroll;
+}
+
+.HotspotBookmark {
+  height: 30px;
 }

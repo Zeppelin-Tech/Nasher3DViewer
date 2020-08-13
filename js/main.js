@@ -222,11 +222,17 @@ function createHotspot(hotspot, slot) {
     // newHotspot.setAttribute("visible", true)
 
     let head = document.createElement("div");
+
+    // non absolute div to ensure that head doesn't overlap with top body text
+    // need head to stay on top during scroll but don't want it to overlap non scrolled text
+    let bookmark = document.createElement("div")
+
     let body = document.createElement("div");
     let label = document.createElement("div");
     let annotation = document.createElement("div");
     let closeIcon = document.createElement("button");
 
+    bookmark.setAttribute("class", "HotspotBookmark");
     head.setAttribute("class", "HotspotHead");
     body.setAttribute("class", "HotspotBody");
     label.setAttribute("class", "HotspotLabel");
@@ -240,8 +246,9 @@ function createHotspot(hotspot, slot) {
 
     head.appendChild(label);
     head.appendChild(annotation);
-    head.appendChild(closeIcon)
     newHotspot.appendChild(head);
+    newHotspot.appendChild(bookmark);
+    newHotspot.appendChild(closeIcon)
     newHotspot.appendChild(body);
 
     return newHotspot
