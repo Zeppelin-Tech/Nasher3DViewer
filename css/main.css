@@ -333,4 +333,10 @@ textarea {
   height: 50%
 }
 
+#presentationModeSwitcher {
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
+
 

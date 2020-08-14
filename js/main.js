@@ -83,31 +83,27 @@ function pressedInfoModal() {
     modalInstance.open();
 }
 
-// TODO: just put all the model updating in a class maybe?
+const modelModifier = function () {
+    var instance;
+    function createInstance() {
+        let modelViewer = document.querySelector("model-viewer");
+        var modifier = new ModelModifier(modelViewer, data.objects[0].id, data)
+        return modifier;
+    }
+
+    return {
+        getInstance: function() {
+            if (!instance) {
+                instance = createInstance();
+            }
+            return instance;
+        }
+    }
+};
+
 function updateModel(element, index) {
-    let modelViewer = document.querySelector("model-viewer");
-
-    let newObject = data.objects[index]
-
-    modelViewer.src = newObject.src;
-    const slides = document.querySelectorAll(".slide");
-    slides.forEach((element) => { element.classList.remove("selected")});
-    element.classList.add("selected");
-
-    for (let i = 0; i < modelViewer.children.length; i++) {
-        const child = modelViewer.children[i]
-        if (child.className === "Hotspot") {
-            modelViewer.removeChild(child);
-            i--;
-        }
-        console.log('test')
-        // modelViewer.removeChild()
-    }
-    if (newObject.hasOwnProperty('hotspots')) {
-        for (let i = 0; i < newObject.hotspots.length; i++) {
-            modelViewer.appendChild(createHotspot(newObject.hotspots[i], "hotspot_" + i));
-        }
-    }
+    let modifier = modelModifier().getInstance();
+    modifier.updateModel(element, index)
 }
 
 function createHotspot(hotspot, slot) {
@@ -130,4 +126,38 @@ function createHotspotAnnotation(label) {
     annotation.setAttribute("class", "HotspotAnnotation");
     annotation.innerText = label
     return annotation
+}
+
+class ModelModifier {
+    constructor(modelViewer, currentModel, modelData) {
+        this.modelViewer = modelViewer;
+        this.currentModel = currentModel;
+        this.modelData = modelData;
+    }
+    deleteHotspots() {
+        for (let i = 0; i < this.modelViewer.children.length; i++) {
+            const child = this.modelViewer.children[i]
+            if (child.className === "Hotspot") {
+                this.modelViewer.removeChild(child);
+                i--;
+            }
+        }
+    }
+    drawHotspots(index) {
+        let newModel = this.modelData.objects[index];
+        if (newModel.hasOwnProperty('hotspots')) {
+            for (let i = 0; i < newModel.hotspots.length; i++) {
+                this.modelViewer.appendChild(createHotspot(newModel.hotspots[i], "hotspot_" + i));
+            }
+        }
+    }
+    updateModel(element, index) {
+        let newModel = this.modelData.objects[index]
+        this.modelViewer.src = newModel.src;
+        const slides = document.querySelectorAll(".slide");
+        slides.forEach((element) => { element.classList.remove("selected")});
+        element.classList.add("selected");
+        this.deleteHotspots();
+        this.drawHotspots(index);
+    }
 }
