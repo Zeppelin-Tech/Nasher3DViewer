@@ -113,7 +113,7 @@ function loadObjectInfo() {
 
             // Artist
             if (obj.hasOwnProperty("people")) {
-                artistSpan.innerText = obj.people.value;
+                artistSpan.innerText = "Artist: " + obj.people.value;
             } else {
                 artistSpan.parentElement.parentElement.remove();
             }

@@ -288,6 +288,12 @@ textarea {
   display: none;
 }
 
+#artistspan {
+  display: table;
+  font-size: .9em;
+  color: gray;
+}
+
 @media screen and (max-aspect-ratio: 1 / 1){
   #infobox {
     width: 100%;
