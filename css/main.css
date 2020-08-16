@@ -271,7 +271,8 @@ textarea {
   top: 1em;
   left: 1em;
   position: absolute;
-  width: 25em;
+  width: 24em;
+  height: auto;
 }
 
 #info {
@@ -383,7 +384,7 @@ body {
   border: none;
   color: white;
   font-weight: bold;
-  background-color: #0093ff
+  background-color: #0093ff;
 }
 
 .HotspotExpanded {
@@ -398,42 +399,42 @@ body {
 
 .HotspotHead {
   position: absolute;
-  padding: 5px;
-  width: 95%;
+  height: 32px;
+  width: 100%;
   background-color: #999999;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
-.HotspotLabel {
-  font-weight: bold;
-  margin-left: 5px;
-  float: left;
-}
-
-.HotspotAnnotation {
-  margin-left: 20px;
-  display: inline-block;
-}
-
 .HotspotClose {
+  color: white;
+  font-size: 22px;
+  padding: 0;
   height: 32px;
-  width: 16px;
-  background-image: url("../img/close.png");
-  background-size: 75%;
-  background-repeat: no-repeat;
+  width: 32px;
   background-color: #0093ff;
-  background-position: center;
   border: none;
-  display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
   border-top-right-radius: 6px;
 }
 
+.HotspotLabel {
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 10px;
+  float: left;
+}
+
+.HotspotAnnotation {
+  margin-top: 5px;
+  margin-left: 18px;
+  display: inline-block;
+}
+
 .HotspotBody {
-  padding: 5px;
+  padding: 10px;
 }
 
 .HotspotBookmark {

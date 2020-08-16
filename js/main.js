@@ -234,6 +234,7 @@ function createHotspot(hotspot, slot) {
     let label = document.createElement("div");
     let annotation = document.createElement("div");
     let close = document.createElement("button");
+    let closeIcon = document.createElement("i");
 
     minimized.setAttribute("class", "HotspotMinimized");
     expanded.setAttribute("class", "HotspotExpanded")
@@ -243,6 +244,7 @@ function createHotspot(hotspot, slot) {
     label.setAttribute("class", "HotspotLabel");
     annotation.setAttribute("class", "HotspotAnnotation");
     close.setAttribute("class", "HotspotClose");
+    closeIcon.setAttribute("class", "HotspotCloseIcon fas fa-times");
 
     //TODO replace body
     minimized.innerText = hotspotCounter.toString();
@@ -262,6 +264,8 @@ function createHotspot(hotspot, slot) {
 
     head.appendChild(label);
     head.appendChild(annotation);
+
+    close.appendChild(closeIcon);
 
     expanded.appendChild(head);
     expanded.appendChild(bookmark);
