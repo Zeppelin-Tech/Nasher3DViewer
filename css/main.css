@@ -291,6 +291,47 @@ textarea {
   display: none;
 }
 
+#artistspan {
+  display: table;
+  font-size: .9em;
+  color: gray;
+}
+
+/* Infobox styling for phones */
+@media screen and (max-aspect-ratio: 1 / 1){
+  #infobox {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+}
+
+/* Different logo sizes at different screen widths */
+#logo {
+  position: absolute;
+  margin: .5em .5em;
+}
+
+
+
+@media screen and (max-width: 30em) {
+  #logo {
+    width: 10em;
+  }
+}
+
+@media screen and (min-width: 30em) and (max-width: 45em) {
+  #logo {
+    width: 15em;
+  }
+}
+
+@media screen and (min-width: 45em) {
+  #logo {
+    width: 20em;
+  }
+}
+
 #infoclose {
   position: absolute;
   top: 1em;
