@@ -264,7 +264,15 @@ textarea {
 #viewer {
   width: 100%;
   height: 100%;
+  position: fixed;
+}
+
+#logo {
+  top: 1em;
+  left: 1em;
   position: absolute;
+  width: 24em;
+  height: auto;
 }
 
 #info {
@@ -409,4 +417,67 @@ body {
   height: 50%
 }
 
+.HotspotMinimized {
+  padding: 0;
+  height: 35px ;
+  width: 35px ;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #0093ff;
+}
 
+.HotspotExpanded {
+  display: none;
+  height: 200px;
+  width: 200px;
+  border-radius: 6px;
+  background-color: #696668;
+  color: white;
+  overflow: scroll;
+}
+
+.HotspotHead {
+  position: absolute;
+  height: 32px;
+  width: 100%;
+  background-color: #999999;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.HotspotClose {
+  color: white;
+  font-size: 22px;
+  padding: 0;
+  height: 32px;
+  width: 32px;
+  background-color: #0093ff;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 6px;
+}
+
+.HotspotLabel {
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 10px;
+  float: left;
+}
+
+.HotspotAnnotation {
+  margin-top: 5px;
+  margin-left: 18px;
+  display: inline-block;
+}
+
+.HotspotBody {
+  padding: 10px;
+}
+
+.HotspotBookmark {
+  height: 30px;
+}
