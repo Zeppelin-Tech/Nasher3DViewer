@@ -14,12 +14,14 @@ let data = JSON.parse("{\n" +
     "\t\t\t\"ios\": \"models.2213.usdz\",\n" +
     "\t\t\t\"hotspots\": [{\n" +
     "\t\t\t\t\t\"label\": \"Ceramic Paint\",\n" +
+    "\t\t\t\t\t\"body\": \"HOTSPOT 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n" +
     "\t\t\t\t\t\"position\": \"0.4007812111279194m 0.5728657373429219m 1.097146245737618m\",\n" +
     "\t\t\t\t\t\"normal\": \"0.16744492173726025m 0.8337560844961998m 0.5261302022788354m\",\n" +
     "\t\t\t\t\t\"visibility\": \"visible\"\n" +
     "\t\t\t\t},\n" +
     "\t\t\t\t{\n" +
     "\t\t\t\t\t\"label\": \"Brown Corn\",\n" +
+    "\t\t\t\t\t\"body\": \"HOTSPOT 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n" +
     "\t\t\t\t\t\"position\": \"-0.5732061558897641m 0.5330821278667062m 0.9063000376948391m\",\n" +
     "\t\t\t\t\t\"normal\": \"-0.9294973541164393m -0.05834724631259222m 0.364184386730508m\",\n" +
     "\t\t\t\t\t\"visibility\": \"visible\"\n" +
@@ -248,7 +250,7 @@ function createHotspot(hotspot, slot) {
 
     //TODO replace body
     minimized.innerText = hotspotCounter.toString();
-    body.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    body.innerText = hotspot.body;
     label.innerText = hotspotCounter.toString();
     annotation.innerText = hotspot.label;
 
