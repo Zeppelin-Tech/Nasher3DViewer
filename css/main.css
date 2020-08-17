@@ -429,17 +429,15 @@ body {
 }
 
 .HotspotExpanded {
+  transform: translate(85px, 85px);
   display: none;
   height: 200px;
   width: 200px;
   border-radius: 6px;
-  background-color: #696668;
   color: white;
-  overflow: scroll;
 }
 
 .HotspotHead {
-  position: absolute;
   height: 32px;
   width: 100%;
   background-color: #999999;
@@ -475,9 +473,10 @@ body {
 }
 
 .HotspotBody {
+  background-color: #696668;
   padding: 10px;
-}
-
-.HotspotBookmark {
-  height: 30px;
+  height: 144px;
+  overflow: scroll;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
