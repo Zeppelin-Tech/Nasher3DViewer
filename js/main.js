@@ -230,23 +230,46 @@ function createHotspot(hotspot, slot) {
     let body = document.createElement("div");
     let label = document.createElement("div");
     let annotation = document.createElement("div");
+    let minLabel = document.createElement("div");
+    let prevAnnotation = document.createElement("div");
     let close = document.createElement("button");
     let closeIcon = document.createElement("i");
 
-    minimized.setAttribute("class", "HotspotMinimized");
-    expanded.setAttribute("class", "HotspotExpanded")
+    minimized.setAttribute("class", "HotspotMinimized pulse");
+    expanded.setAttribute("class", "HotspotExpanded");
+
     head.setAttribute("class", "HotspotHead");
     body.setAttribute("class", "HotspotBody");
     label.setAttribute("class", "HotspotLabel");
     annotation.setAttribute("class", "HotspotAnnotation");
+
+    minLabel.setAttribute("class", "HotspotMinLabel")
+    prevAnnotation.setAttribute("class", "HotspotPrevAnnotation");
+
     close.setAttribute("class", "HotspotClose");
     closeIcon.setAttribute("class", "HotspotCloseIcon fas fa-times");
 
-    //TODO replace body
-    minimized.innerText = hotspotCounter.toString();
     body.innerText = hotspot.body;
     label.innerText = hotspotCounter.toString();
+    minLabel.innerText = hotspotCounter.toString();
     annotation.innerText = hotspot.label;
+    prevAnnotation.innerText = hotspot.label;
+
+    prevAnnotation.style.display = "none";
+
+    minimized.onmouseover = function () {
+        minimized.classList.remove("pulse");
+        minimized.classList.replace("HotspotMinimized", "HotspotPreview");
+        minLabel.classList.replace("HotspotMinLabel" , "HotspotLabel");
+        prevAnnotation.style.display = "inline-block";
+    }
+
+    minimized.onmouseout = function () {
+        minimized.classList.add("pulse");
+        minimized.classList.replace("HotspotPreview", "HotspotMinimized");
+        minLabel.classList.replace("HotspotLabel" , "HotspotMinLabel");
+        prevAnnotation.style.display = "none";
+    }
 
     minimized.onclick = function () {
         minimized.style.display = "none";
@@ -262,6 +285,9 @@ function createHotspot(hotspot, slot) {
     head.appendChild(annotation);
 
     close.appendChild(closeIcon);
+
+    minimized.appendChild(minLabel);
+    minimized.appendChild(prevAnnotation);
 
     expanded.appendChild(head);
     expanded.appendChild(close)

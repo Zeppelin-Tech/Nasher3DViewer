@@ -419,13 +419,43 @@ body {
 
 .HotspotMinimized {
   padding: 0;
-  height: 35px ;
-  width: 35px ;
+  height: 40px ;
+  width: 40px;
+  opacity: 90%;
   border-radius: 50%;
   border: none;
   color: white;
   font-weight: bold;
-  background-color: #0093ff;
+  background-color: #999999;
+}
+
+.HotspotMinLabel {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.HotspotPrevAnnotation {
+  overflow: hidden;
+  float: left;
+  margin-top: 5px;
+  margin-left: 18px;
+  margin-bottom: 3px;
+  display: inline-block;
+}
+
+.HotspotPreview {
+  transform: translate(-15px,-15px);
+  position: absolute;
+  overflow: hidden;
+  padding: 0;
+  transition: width .4s;
+  color: white;
+  border: none;
+  height: 32px;
+  width: 200px;
+  background-color: #999999;
+  border-radius: 6px;
 }
 
 .HotspotExpanded {
@@ -438,6 +468,10 @@ body {
 }
 
 .HotspotHead {
+  margin: 0;
+  transition: width 2s;
+  color: white;
+  border: none;
   height: 32px;
   width: 100%;
   background-color: #999999;
@@ -451,7 +485,7 @@ body {
   padding: 0;
   height: 32px;
   width: 32px;
-  background-color: #0093ff;
+  background-color: #96d607;
   border: none;
   position: absolute;
   top: 0;
@@ -467,8 +501,10 @@ body {
 }
 
 .HotspotAnnotation {
+  float: left;
   margin-top: 5px;
   margin-left: 18px;
+  margin-bottom: 2px;
   display: inline-block;
 }
 
