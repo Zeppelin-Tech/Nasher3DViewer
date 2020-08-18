@@ -499,3 +499,21 @@ body {
 .HotspotBookmark {
   height: 30px;
 }
+
+.HotspotMobile {
+  position: absolute;
+}
+
+/* Hide mobile-style hotspots when aspect ratio is greater than 1 */
+@media screen and (min-aspect-ratio: 1 / 1) {
+  .HotspotMobile {
+    visibility: hidden;
+  }
+}
+
+/* Hide normal hotspot body when aspect ratio is less than 1 */
+@media screen and (max-aspect-ratio: 1 / 1) {
+  .HotspotDesktop {
+    visibility: hidden;
+  }
+}
