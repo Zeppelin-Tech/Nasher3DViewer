@@ -549,3 +549,8 @@ body {
     visibility: hidden;
   }
 }
+
+/* Override Materialize background color */
+button:focus {
+  background-color: #96d607;
+}
