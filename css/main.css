@@ -261,15 +261,40 @@ textarea {
   }
 }
 
+body {
+  overflow: hidden;
+}
+
 #viewer {
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
 }
 
+/* Different logo sizes at different screen widths */
 #logo {
   position: absolute;
-  width: 25em;
+  margin: .5em .5em;
+}
+
+
+
+@media screen and (max-width: 30em) {
+  #logo {
+    width: 10em;
+  }
+}
+
+@media screen and (min-width: 30em) and (max-width: 45em) {
+  #logo {
+    width: 15em;
+  }
+}
+
+@media screen and (min-width: 45em) {
+  #logo {
+    width: 20em;
+  }
 }
 
 #info {
@@ -288,6 +313,48 @@ textarea {
   display: none;
 }
 
+#artistspan {
+  display: table;
+  font-size: .9em;
+  color: gray;
+}
+
+/* Infobox styling for phones */
+@media screen and (max-aspect-ratio: 1 / 1){
+  #infobox {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+}
+
+/* Different logo sizes at different screen widths */
+#logo {
+  position: absolute;
+  margin: .5em .5em;
+}
+
+
+
+@media screen and (max-width: 30em) {
+  #logo {
+    width: 10em;
+  }
+}
+
+
+@media screen and (min-width: 30em) and (max-width: 45em) {
+  #logo {
+    width: 15em;
+  }
+}
+
+@media screen and (min-width: 45em) {
+  #logo {
+    width: 20em;
+  }
+}
+
 #infoclose {
   position: absolute;
   top: 1em;
@@ -295,33 +362,6 @@ textarea {
   color: black;
 }
 
-#modelSelector {
-  position: absolute;
-  height: 10%;
-  bottom: 0;
-}
-#models {
-  position: relative;
-  display: flex;
-  margin: auto;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-}
-
-#models > .slide {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-  width: 0;
-  /*height: 100%;*/
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #fff;
-  margin-right: 10px;
-  border: none;
-  display: flex;
-}
 
 .collapsible {
   margin-top: 0;
@@ -331,36 +371,43 @@ textarea {
   background-color: white;
 }
 
-body {
-  overflow: hidden;
-}
-
-.slider {
-  width: 100%;
-  text-align: center;
-  overflow: hidden;
+#scrollBar {
   position: absolute;
-  bottom: 16px;
+  height: 12em;
+  bottom: 0;
+  animation-duration: 1s;
 }
 
-.slides {
+#models {
+  padding-top: 1em;
+  padding-left: 1em;
+  /*height: 10em;*/
+  position: relative;
   display: flex;
+  margin: auto;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+
+
 }
 
-.slide {
+@keyframes moveDown {
+  100% {top:10em;}
+}
+
+#models > .slide {
+
   scroll-snap-align: start;
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
+  height: 8em;
+  width: 8em;
+  /*height: 100%;*/
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   background-color: #fff;
-  margin-right: 10px;
+  margin-right: 1em;
   border: none;
   display: flex;
 }
@@ -370,7 +417,98 @@ body {
 }
 
 #scrollBarHider {
-  height: 50%
+  height: 2em;
+}
+
+#presentationModeSwitcher {
+  position: absolute;
+  top: 50%;
+  right: 0;
 }
 
 
+.HotspotMinimized {
+  padding: 0;
+  height: 35px ;
+  width: 35px ;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #0093ff;
+}
+
+.HotspotExpanded {
+  display: none;
+  height: 200px;
+  width: 200px;
+  border-radius: 6px;
+  background-color: #696668;
+  color: white;
+  overflow: scroll;
+}
+
+.HotspotHead {
+  position: absolute;
+  height: 32px;
+  width: 100%;
+  background-color: #999999;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.HotspotClose {
+  color: white;
+  font-size: 22px;
+  padding: 0;
+  height: 32px;
+  width: 32px;
+  background-color: #0093ff;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 6px;
+}
+
+.HotspotLabel {
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 10px;
+  float: left;
+}
+
+.HotspotAnnotation {
+  margin-top: 5px;
+  margin-left: 18px;
+  display: inline-block;
+}
+
+.HotspotBody {
+  padding: 10px;
+}
+
+.HotspotBookmark {
+  height: 30px;
+}
+
+.HotspotMobile {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+}
+
+/* Hide mobile-style hotspots when aspect ratio is greater than 1 */
+@media screen and (min-aspect-ratio: 1 / 1) {
+  .HotspotMobile {
+    visibility: hidden;
+  }
+}
+
+/* Hide normal hotspot body when aspect ratio is less than 1 */
+@media screen and (max-aspect-ratio: 1 / 1) {
+  .HotspotDesktop {
+    visibility: hidden;
+  }
+}

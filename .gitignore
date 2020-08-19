@@ -4,3 +4,6 @@
 node_modules
 dist
 .cache
+
+# OSX generated files
+.DS_Store
