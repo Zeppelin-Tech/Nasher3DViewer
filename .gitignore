@@ -4,6 +4,7 @@
 node_modules
 dist
 .cache
+jsconfig.json
 
 # OSX generated files
 .DS_Store
