@@ -375,6 +375,7 @@ body {
   position: absolute;
   height: 12em;
   bottom: 0;
+  text-align: center;
 }
 
 #models {
