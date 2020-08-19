@@ -31,15 +31,15 @@
 </head>
 
 <body onload="main()">
-<model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer">
-    <div class="slider" id="scrollBar">
-        <div id="scrollBarHider">
-            <i class="fa fa-angle-double-down" id="scrollBarIcon" aria-hidden="true" onclick="hideModelScroll()"></i>
-        </div>
-        <div class="slides" id="models"></div>
-    </div>
-</model-viewer>
+<model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer" max-field-of-view="90deg" field-of-view="60deg">
 
+</model-viewer>
+<div class="slider" id="scrollBar">
+  <div id="scrollBarHider">
+    <i class="fa fa-angle-double-down" id="scrollBarIcon" aria-hidden="true" onclick="hideModelScroll()"></i>
+  </div>
+  <div class="slides" id="models"></div>
+</div>
 <img src="img/logo.png" alt="Nasher museum logo" id="logo"/>
 
 <a class="btn-floating btn-large waves-effect waves-light" id="info"><i class="fas fa-info"></i></a>
