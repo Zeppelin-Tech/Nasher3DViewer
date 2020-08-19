@@ -375,7 +375,6 @@ body {
   position: absolute;
   height: 12em;
   bottom: 0;
-  animation-duration: 1s;
 }
 
 #models {
@@ -490,4 +489,26 @@ body {
 
 .HotspotBookmark {
   height: 30px;
+}
+
+@keyframes scrollbar__slideInUp {
+	from { bottom: -10em; }
+	to { bottom: 0; }
+}
+
+@keyframes scrollbar__slideOutDown {
+	from { bottom: 0; }
+	to { bottom: -10em; }
+}
+
+.scrollbar__slideInUp {
+	animation-name: scrollbar__slideInUp;
+}
+
+.scrollbar__slideOutDown {
+	animation-name: scrollbar__slideOutDown;
+}
+
+.scrollbar__animated {
+	animation-duration: 1s;
 }
