@@ -355,7 +355,7 @@ function hideModelScroll() {
     let scrollBar = document.getElementById("scrollBar")
     let animation = scrollBarHidden ? "slideOutDown" : "slideInUp"
 
-    // Hide modelBar
+    // Show scrollbar if its currently hidden 
     if (!scrollBarHidden) {
         let modelBar = document.getElementById("models");
         modelBar.hidden = scrollBarHidden;
