@@ -33,8 +33,11 @@
 <body onload="main()">
 <model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer" max-field-of-view="90deg" field-of-view="60deg">
 <div class="slider" id="scrollBar">
-  <div id="scrollBarHider">
-    <i class="fa fa-angle-double-down fa-lg" id="scrollBarIcon" aria-hidden="true" onclick="hideModelScroll()"></i>
+  <div id="scrollBarHider" onclick="hideModelScroll()">
+    <i class="fa fa-angle-double-down fa-lg"
+		id="scrollBarIcon" 
+		aria-hidden="true">
+	</i>
   </div>
   <div class="slides" id="models"></div>
 </div>
