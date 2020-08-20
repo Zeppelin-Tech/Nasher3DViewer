@@ -3,8 +3,6 @@
 // import * as data from 'json/sample.json';
 // const {name} = data;
 
-let modalInstance;
-
 let data = JSON.parse("{\n" +
     "\t\"title\": \"Some 3D Collection\",\n" +
     "\t\"desc\": \"This is a description of this particular collection of 3D objects.\",\n" +
@@ -253,8 +251,6 @@ function loadObjectInfo() {
 function initMaterializeComponents() {
     let elems = document.querySelectorAll('.modal');
     let instances = M.Modal.init(elems, null);
-
-    modalInstance = instances[0];
 }
 
 function pressedInfoDiv() {
@@ -268,10 +264,6 @@ function closedInfo() {
     let box = document.getElementById("infobox");
     box.classList.remove('animate__animated', 'animate__slideInRight')
     box.classList.add('animate__animated', 'animate__slideOutRight');
-}
-
-function pressedInfoModal() {
-    modalInstance.open();
 }
 
 let hotspotCounter = 1;
@@ -300,7 +292,7 @@ function createHotspot(hotspot, slot) {
     let closeIcon = document.createElement("i");
 
     minimized.setAttribute("class", "HotspotMinimized");
-    expanded.setAttribute("class", "HotspotExpanded")
+    expanded.setAttribute("class", "HotspotExpanded");
     bookmark.setAttribute("class", "HotspotBookmark");
     head.setAttribute("class", "HotspotHead");
     body.setAttribute("class", "HotspotBody");
@@ -315,16 +307,6 @@ function createHotspot(hotspot, slot) {
     label.innerText = hotspotCounter.toString();
     annotation.innerText = hotspot.label;
 
-    minimized.onclick = function () {
-        minimized.style.display = "none";
-        expanded.style.display = "block";
-    }
-
-    close.onclick = function () {
-        minimized.style.display = "block";
-        expanded.style.display = "none";
-    }
-
     head.appendChild(label);
     head.appendChild(annotation);
 
@@ -338,6 +320,31 @@ function createHotspot(hotspot, slot) {
     newHotspot.appendChild(minimized);
     newHotspot.appendChild(expanded);
 
+    // Create cloned element for mobile fullscreen display
+    let mobileExpanded = expanded.cloneNode(true);
+
+    // Apply classes to distinguish between the two hotspots
+    mobileExpanded.classList.add("HotspotMobile");
+    expanded.classList.add("HotspotDesktop");
+
+    document.body.appendChild(mobileExpanded);
+
+    minimized.onclick = function () {
+        minimized.style.display = "none";
+        expanded.style.display = "block";
+        mobileExpanded.style.display = "block";
+    }
+
+    // Apply same close callback to both of our buttons, for the mobile AND desktop hotspot
+    let closeCallback = function() {
+        minimized.style.display = "block";
+        expanded.style.display = "none";
+        mobileExpanded.style.display = "none";
+    }
+
+    close.onclick = closeCallback;
+    mobileExpanded.childNodes[2].onclick = closeCallback; // This feels sketchy but I cannot think of a better way right now
+
     hotspotCounter++;
     return newHotspot
 }
@@ -349,7 +356,7 @@ function hideModelScroll() {
     // change arrow direction
     let arrow = document.getElementById("scrollBarIcon");
     let direction = scrollBarHidden ? "up" : "down";
-    arrow.setAttribute("class", "fa fa-angle-double-" + direction);
+    arrow.setAttribute("class", `fa fa-angle-double-${direction} fa-lg`);
 
     // animate down scrollBar
     let scrollBar = document.getElementById("scrollBar")

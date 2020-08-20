@@ -417,7 +417,17 @@ body {
 }
 
 #scrollBarHider {
-  height: 2em;
+	height: 1em;
+	width: 5%;
+	left: 47.5%;
+	position: relative;
+	border-radius: 4px 4px 0px 0px;
+  background-color: #dedede;
+  padding: 0.5em;
+}
+
+#scrollBarIcon {
+	height: 1em;
 }
 
 #presentationModeSwitcher {
@@ -513,3 +523,25 @@ body {
 .scrollbar__animated {
 	animation-duration: 1s;
 }
+
+.HotspotMobile {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+}
+
+/* Hide mobile-style hotspots when aspect ratio is greater than 1 */
+@media screen and (min-aspect-ratio: 1 / 1) {
+  .HotspotMobile {
+    visibility: hidden;
+  }
+}
+
+/* Hide normal hotspot body when aspect ratio is less than 1 */
+@media screen and (max-aspect-ratio: 1 / 1) {
+  .HotspotDesktop {
+    visibility: hidden;
+  }
+}
+
