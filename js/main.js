@@ -291,20 +291,16 @@ function createHotspot(hotspot, slot) {
     annotation.innerText = hotspot.label;
     prevAnnotation.innerText = hotspot.label;
 
-    prevAnnotation.style.display = "none";
-
     minimized.onmouseover = function () {
         minimized.classList.remove("pulse");
         minimized.classList.replace("HotspotMinimized", "HotspotPreview");
-        minLabel.classList.replace("HotspotMinLabel" , "HotspotLabel");
-        prevAnnotation.style.display = "inline-block";
+        minLabel.classList.replace("HotspotMinLabel" , "HotspotPrevLabel");
     }
 
     minimized.onmouseout = function () {
         minimized.classList.add("pulse");
         minimized.classList.replace("HotspotPreview", "HotspotMinimized");
-        minLabel.classList.replace("HotspotLabel" , "HotspotMinLabel");
-        prevAnnotation.style.display = "none";
+        minLabel.classList.replace("HotspotPrevLabel" , "HotspotMinLabel");
     }
 
     head.appendChild(label);
