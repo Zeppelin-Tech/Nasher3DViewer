@@ -429,8 +429,8 @@ body {
 
 .HotspotMinimized {
   padding: 0;
-  height: 2em;
-  width: 2em;
+  height: 2.5em;
+  width: 2.5em;
   border-radius: 50%;
   border: none;
   color: white;
@@ -440,8 +440,8 @@ body {
 
 .HotspotMinLabel {
   position: absolute;
-  top: 0.472em;
-  left: 0.688em;
+  top: 0.75em;
+  left: .95em;
   font-weight: bold;
   text-shadow: 1px 1px #000000;
 }
