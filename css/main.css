@@ -523,6 +523,7 @@ body {
   padding: 10px;
   height: 144px;
   overflow: scroll;
+  overflow-x: hidden;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
 }
