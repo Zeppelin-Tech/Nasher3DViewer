@@ -250,24 +250,6 @@ function loadObjectInfo() {
     req.send();
 }
 
-function initMaterializeComponents() {
-    let elems = document.querySelectorAll('.modal');
-    let instances = M.Modal.init(elems, null);
-}
-
-function pressedInfoDiv() {
-    let box = document.getElementById("infobox");
-    box.style.display = "block";
-    box.classList.remove('animate__animated', 'animate__slideOutRight')
-    box.classList.add('animate__animated', 'animate__slideInRight');
-}
-
-function closedInfo() {
-    let box = document.getElementById("infobox");
-    box.classList.remove('animate__animated', 'animate__slideInRight')
-    box.classList.add('animate__animated', 'animate__slideOutRight');
-}
-
 let hotspotCounter = 1;
 function createHotspot(hotspot, slot) {
     let newHotspot = document.createElement("div");
@@ -368,7 +350,6 @@ function createHotspot(hotspot, slot) {
     hotspotCounter++;
     return newHotspot
 }
-
 
 function hideModelScroll() {
     scrollBarHidden = !scrollBarHidden;
