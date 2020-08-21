@@ -14,12 +14,14 @@ let data = JSON.parse("{\n" +
     "\t\t\t\"ios\": \"models.2213.usdz\",\n" +
     "\t\t\t\"hotspots\": [{\n" +
     "\t\t\t\t\t\"label\": \"Ceramic Paint\",\n" +
+    "\t\t\t\t\t\"body\": \"HOTSPOT 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n" +
     "\t\t\t\t\t\"position\": \"0.4007812111279194m 0.5728657373429219m 1.097146245737618m\",\n" +
     "\t\t\t\t\t\"normal\": \"0.16744492173726025m 0.8337560844961998m 0.5261302022788354m\",\n" +
     "\t\t\t\t\t\"visibility\": \"visible\"\n" +
     "\t\t\t\t},\n" +
     "\t\t\t\t{\n" +
     "\t\t\t\t\t\"label\": \"Brown Corn\",\n" +
+    "\t\t\t\t\t\"body\": \"HOTSPOT 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n" +
     "\t\t\t\t\t\"position\": \"-0.5732061558897641m 0.5330821278667062m 0.9063000376948391m\",\n" +
     "\t\t\t\t\t\"normal\": \"-0.9294973541164393m -0.05834724631259222m 0.364184386730508m\",\n" +
     "\t\t\t\t\t\"visibility\": \"visible\"\n" +
@@ -248,24 +250,6 @@ function loadObjectInfo() {
     req.send();
 }
 
-function initMaterializeComponents() {
-    let elems = document.querySelectorAll('.modal');
-    let instances = M.Modal.init(elems, null);
-}
-
-function pressedInfoDiv() {
-    let box = document.getElementById("infobox");
-    box.style.display = "block";
-    box.classList.remove('animate__animated', 'animate__slideOutRight')
-    box.classList.add('animate__animated', 'animate__slideInRight');
-}
-
-function closedInfo() {
-    let box = document.getElementById("infobox");
-    box.classList.remove('animate__animated', 'animate__slideInRight')
-    box.classList.add('animate__animated', 'animate__slideOutRight');
-}
-
 let hotspotCounter = 1;
 function createHotspot(hotspot, slot) {
     let newHotspot = document.createElement("div");
@@ -280,40 +264,54 @@ function createHotspot(hotspot, slot) {
     let expanded = document.createElement("div")
 
     let head = document.createElement("div");
-
-    // non absolute div to ensure that head doesn't overlap with top body text
-    // need head to stay on top during scroll but don't want it to overlap non scrolled text
-    let bookmark = document.createElement("div")
-
     let body = document.createElement("div");
     let label = document.createElement("div");
     let annotation = document.createElement("div");
+    let minLabel = document.createElement("div");
+    let prevAnnotation = document.createElement("div");
     let close = document.createElement("button");
     let closeIcon = document.createElement("i");
 
-    minimized.setAttribute("class", "HotspotMinimized");
+    minimized.setAttribute("class", "HotspotMinimized pulse");
     expanded.setAttribute("class", "HotspotExpanded");
-    bookmark.setAttribute("class", "HotspotBookmark");
     head.setAttribute("class", "HotspotHead");
     body.setAttribute("class", "HotspotBody");
     label.setAttribute("class", "HotspotLabel");
     annotation.setAttribute("class", "HotspotAnnotation");
+
+    minLabel.setAttribute("class", "HotspotMinLabel")
+    prevAnnotation.setAttribute("class", "HotspotPrevAnnotation");
+
     close.setAttribute("class", "HotspotClose");
     closeIcon.setAttribute("class", "HotspotCloseIcon fas fa-times");
 
-    //TODO replace body
-    minimized.innerText = hotspotCounter.toString();
-    body.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    body.innerText = hotspot.body;
     label.innerText = hotspotCounter.toString();
+    minLabel.innerText = hotspotCounter.toString();
     annotation.innerText = hotspot.label;
+    prevAnnotation.innerText = hotspot.label;
+
+    minimized.onmouseover = function () {
+        minimized.classList.remove("pulse");
+        minimized.classList.replace("HotspotMinimized", "HotspotPreview");
+        minLabel.classList.replace("HotspotMinLabel" , "HotspotPrevLabel");
+    }
+
+    minimized.onmouseout = function () {
+        minimized.classList.add("pulse");
+        minimized.classList.replace("HotspotPreview", "HotspotMinimized");
+        minLabel.classList.replace("HotspotPrevLabel" , "HotspotMinLabel");
+    }
 
     head.appendChild(label);
     head.appendChild(annotation);
 
     close.appendChild(closeIcon);
 
+    minimized.appendChild(minLabel);
+    minimized.appendChild(prevAnnotation);
+
     expanded.appendChild(head);
-    expanded.appendChild(bookmark);
     expanded.appendChild(close)
     expanded.appendChild(body);
 
@@ -348,7 +346,6 @@ function createHotspot(hotspot, slot) {
     hotspotCounter++;
     return newHotspot
 }
-
 
 function hideModelScroll() {
     scrollBarHidden = !scrollBarHidden;
