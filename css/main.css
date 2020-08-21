@@ -297,10 +297,20 @@ body {
   }
 }
 
-#info {
+#buttonbox {
   position: absolute;
-  top: 1em;
-  right: 1em;
+  top: .5em;
+  right: .5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#buttonbox > a {
+  margin: .5em;
+}
+
+#info {
   background-color: #96d607;
 }
 
@@ -431,9 +441,11 @@ body {
 }
 
 #presentationModeSwitcher {
-  position: absolute;
-  top: 50%;
-  right: 0;
+
+}
+
+#presentationModeSwitcher > i {
+  font-size: 1.25em;
 }
 
 
