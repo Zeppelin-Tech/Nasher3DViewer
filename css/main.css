@@ -180,9 +180,9 @@ textarea {
 }
 
 @media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
 
@@ -297,10 +297,20 @@ body {
   }
 }
 
-#info {
+#buttonbox {
   position: absolute;
-  top: 1em;
-  right: 1em;
+  top: .5em;
+  right: .5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#buttonbox > a {
+  margin: .5em;
+}
+
+#info {
   background-color: #96d607;
 }
 
@@ -375,7 +385,7 @@ body {
   position: absolute;
   height: 12em;
   bottom: 0;
-  animation-duration: 1s;
+  text-align: center;
 }
 
 #models {
@@ -417,13 +427,25 @@ body {
 }
 
 #scrollBarHider {
-  height: 2em;
+  height: 1em;
+  width: 5%;
+  left: 47.5%;
+  position: relative;
+  border-radius: 4px 4px 0px 0px;
+  background-color: #dedede;
+  padding: 0.5em;
+}
+
+#scrollBarIcon {
+  height: 1em;
 }
 
 #presentationModeSwitcher {
-  position: absolute;
-  top: 50%;
-  right: 0;
+
+}
+
+#presentationModeSwitcher > i {
+  font-size: 1.25em;
 }
 
 
@@ -492,6 +514,28 @@ body {
   height: 30px;
 }
 
+@keyframes scrollbar__slideInUp {
+  from { bottom: -10em; }
+  to { bottom: 0; }
+}
+
+@keyframes scrollbar__slideOutDown {
+  from { bottom: 0; }
+  to { bottom: -10em; }
+}
+
+.scrollbar__slideInUp {
+  animation-name: scrollbar__slideInUp;
+}
+
+.scrollbar__slideOutDown {
+  animation-name: scrollbar__slideOutDown;
+}
+
+.scrollbar__animated {
+  animation-duration: 1s;
+}
+
 .HotspotMobile {
   position: absolute;
   width: 100%;
@@ -512,3 +556,4 @@ body {
     visibility: hidden;
   }
 }
+
