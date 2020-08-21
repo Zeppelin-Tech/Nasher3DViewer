@@ -31,19 +31,24 @@
 </head>
 
 <body onload="main()">
-<model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer">
-    <div class="slider" id="scrollBar">
-        <div id="scrollBarHider">
-            <i class="fa fa-angle-double-down" id="scrollBarIcon" aria-hidden="true" onclick="hideModelScroll()"></i>
-        </div>
-        <div class="slides" id="models"></div>
-    </div>
+<model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer" max-field-of-view="90deg" field-of-view="60deg">
+<div class="slider" id="scrollBar">
+  <div id="scrollBarHider" onclick="hideModelScroll()">
+    <i class="fa fa-angle-double-down fa-lg"
+		id="scrollBarIcon"
+		aria-hidden="true">
+	</i>
+  </div>
+  <div class="slides" id="models"></div>
+</div>
 </model-viewer>
 
 <a href="https://nasher.duke.edu/"><img src="img/logo.png" alt="Nasher museum logo" id="logo"/></a>
 
-<a class="btn-floating btn-large waves-effect waves-light" id="info"><i class="fas fa-info"></i></a>
-<i class="fa fa-television" aria-hidden="true" id="presentationModeSwitcher" onclick="modelUpdater.togglePresentationMode()"></i>
+<div id="buttonbox">
+  <a class="btn-floating btn-large waves-effect waves-light" id="info"><i class="fas fa-info"></i></a>
+  <a class="btn-floating waves-effect waves-light grey" id="presentationModeSwitcher" onclick="modelUpdater.togglePresentationMode()"><i class="fas fa-tv"></i></a>
+</div>
 
 <div id="infobox">
   <a class="waves-effect waves-grey btn-flat" id="infoclose"><i class="fas fa-times"></i></a>
