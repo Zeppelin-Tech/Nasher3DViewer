@@ -375,7 +375,7 @@ body {
   position: absolute;
   height: 12em;
   bottom: 0;
-  animation-duration: 1s;
+  text-align: center;
 }
 
 #models {
@@ -417,7 +417,17 @@ body {
 }
 
 #scrollBarHider {
-  height: 2em;
+	height: 1em;
+	width: 5%;
+	left: 47.5%;
+	position: relative;
+	border-radius: 4px 4px 0px 0px;
+  background-color: #dedede;
+  padding: 0.5em;
+}
+
+#scrollBarIcon {
+	height: 1em;
 }
 
 #presentationModeSwitcher {
@@ -547,6 +557,28 @@ body {
   overflow-x: hidden;
   border-bottom-right-radius: 0.375em;
   border-bottom-left-radius: 0.375em;
+}
+
+@keyframes scrollbar__slideInUp {
+	from { bottom: -10em; }
+	to { bottom: 0; }
+}
+
+@keyframes scrollbar__slideOutDown {
+	from { bottom: 0; }
+	to { bottom: -10em; }
+}
+
+.scrollbar__slideInUp {
+	animation-name: scrollbar__slideInUp;
+}
+
+.scrollbar__slideOutDown {
+	animation-name: scrollbar__slideOutDown;
+}
+
+.scrollbar__animated {
+	animation-duration: 1s;
 }
 
 .HotspotMobile {

@@ -353,20 +353,20 @@ function hideModelScroll() {
     // change arrow direction
     let arrow = document.getElementById("scrollBarIcon");
     let direction = scrollBarHidden ? "up" : "down";
-    arrow.setAttribute("class", "fa fa-angle-double-" + direction);
+    arrow.setAttribute("class", `fa fa-angle-double-${direction} fa-lg`);
 
     // animate down scrollBar
     let scrollBar = document.getElementById("scrollBar")
     let animation = scrollBarHidden ? "slideOutDown" : "slideInUp"
 
-    // Hide modelBar
+    // Show scrollbar if its currently hidden 
     if (!scrollBarHidden) {
         let modelBar = document.getElementById("models");
         modelBar.hidden = scrollBarHidden;
         scrollBar.style.bottom = "0";
     }
 
-    animateCss(scrollBar, animation).then((message) => {
+    animateCss(scrollBar, animation, "scrollbar__").then((message) => {
         console.log(message);
         if (scrollBarHidden) {
             let modelBar = document.getElementById("models");
@@ -376,6 +376,7 @@ function hideModelScroll() {
     })
 }
 
+// This default to using animate.css built in animations, use your own by changing the prefix
 const animateCss = (node, animation, prefix = `animate__`) =>
     new Promise((resolve, reject) => {
         const animationName = `${prefix}${animation}`;
