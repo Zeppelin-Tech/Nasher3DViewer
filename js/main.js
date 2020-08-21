@@ -303,16 +303,16 @@ function createHotspot(hotspot, slot) {
         minLabel.classList.replace("HotspotPrevLabel" , "HotspotMinLabel");
     }
 
+    close.appendChild(closeIcon);
+
     head.appendChild(label);
     head.appendChild(annotation);
-
-    close.appendChild(closeIcon);
+    head.appendChild(close);
 
     minimized.appendChild(minLabel);
     minimized.appendChild(prevAnnotation);
 
     expanded.appendChild(head);
-    expanded.appendChild(close)
     expanded.appendChild(body);
 
     newHotspot.appendChild(minimized);
@@ -341,7 +341,7 @@ function createHotspot(hotspot, slot) {
     }
 
     close.onclick = closeCallback;
-    mobileExpanded.childNodes[2].onclick = closeCallback; // This feels sketchy but I cannot think of a better way right now
+    mobileExpanded.childNodes[0].childNodes[2].onclick = closeCallback; // This feels sketchy but I cannot think of a better way right now
 
     hotspotCounter++;
     return newHotspot
