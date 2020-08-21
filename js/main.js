@@ -37,7 +37,21 @@ let data = JSON.parse("{\n" +
     "\t\t}\n" +
     "\t]\n" +
     "}");
-
+// use shift + left/right to swap models
+function keydown(e) {
+	if (e.shiftKey) {
+		switch (e.keyCode) {
+			case 37:
+				modelUpdater.leftModelPressed();
+				break;
+			case 39:
+				modelUpdater.rightModelPressed();
+				break;
+			default:
+				break;
+		}
+	}
+}
 
 var modelUpdater = {
     modelViewer: 0,
@@ -98,7 +112,21 @@ var modelUpdater = {
         newSlide.setAttribute("style", "background-image: url(" + this.modelData.objects[index].poster + ");")
 
         return newSlide;
-    }
+    },
+	rightModelPressed: function() {
+		if (this.currentIndex < this.modelData.objects.length - 1) {
+			this.currentIndex++;
+			let slides = document.getElementsByClassName("slide");
+			this.updateModel(slides[this.currentIndex], this.currentIndex)
+		}
+	},
+	leftModelPressed: function() {
+		if (this.currentIndex > 0) {
+			this.currentIndex--;
+			let slides = document.getElementsByClassName("slide");
+			this.updateModel(slides[this.currentIndex], this.currentIndex)
+		}
+	}
 }
 
 let scrollBarHidden = false;

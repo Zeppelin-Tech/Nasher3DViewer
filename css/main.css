@@ -628,3 +628,17 @@ body {
 button:focus {
   background-color: #96d607;
 }
+
+#leftModelButton {
+	position: absolute;
+	top: 50%;
+	left: 1em;
+	height: 10%;
+}
+
+#rightModelButton {
+	position: absolute;
+	top: 50%;
+	right: 1em;
+	height: 10%;
+}
