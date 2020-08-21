@@ -180,9 +180,9 @@ textarea {
 }
 
 @media print,
-(-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution: 1.25dppx),
-(min-resolution: 120dpi) {
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
 
@@ -427,17 +427,17 @@ body {
 }
 
 #scrollBarHider {
-  height: 1em;
-  width: 5%;
-  left: 47.5%;
-  position: relative;
-  border-radius: 4px 4px 0px 0px;
+	height: 1em;
+	width: 5%;
+	left: 47.5%;
+	position: relative;
+	border-radius: 4px 4px 0px 0px;
   background-color: #dedede;
   padding: 0.5em;
 }
 
 #scrollBarIcon {
-  height: 1em;
+	height: 1em;
 }
 
 #presentationModeSwitcher {
@@ -451,92 +451,151 @@ body {
 
 .HotspotMinimized {
   padding: 0;
-  height: 35px ;
-  width: 35px ;
+  height: 2.5em;
+  width: 2.5em;
   border-radius: 50%;
   border: none;
   color: white;
   font-weight: bold;
-  background-color: #0093ff;
+  background-color: #999999;
+}
+
+.HotspotMinLabel {
+  position: absolute;
+  top: 0.75em;
+  left: .95em;
+  font-weight: bold;
+  text-shadow: 1px 1px #000000;
+}
+
+.HotspotPrevLabel {
+  font-weight: bold;
+  top: 0.438em;
+  left: 0.625em;
+  float: left;
+  position: absolute;
+  text-shadow: 1px 1px #000000;
+}
+
+
+.HotspotPrevAnnotation {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  float: left;
+  margin-left: 1.75em;
+  display: inline-block;
+}
+
+.HotspotPreview {
+  transform: translate(-0.938em,-0.938em);
+  position: absolute;
+  padding: 0;
+  transition: width .4s;
+  color: white;
+  border: none;
+  height: 2em;
+  width: 12.500em;
+  background-color: #999999;
+  border-radius: 0.375em;
+  cursor: pointer;
+}
+
+.HotspotPreview:hover .HotspotPrevAnnotation {
+  height: auto;
+  width: auto;
+  transition: opacity 1s;
+  opacity: 1;
 }
 
 .HotspotExpanded {
+  transform: translate(5.313em, 5.313em);
   display: none;
-  height: 200px;
-  width: 200px;
-  border-radius: 6px;
-  background-color: #696668;
+  height: 12.500em;
+  width: 12.500em;
+  border-radius: 0.375em;
   color: white;
-  overflow: scroll;
 }
 
 .HotspotHead {
-  position: absolute;
-  height: 32px;
+  transition: width 2s;
+  color: white;
+  border: none;
+  height: 2em;
   width: 100%;
   background-color: #999999;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: 0.375em;
+  border-top-right-radius: 0.375em;
 }
 
 .HotspotClose {
+  cursor: pointer;
   color: white;
   font-size: 22px;
   padding: 0;
-  height: 32px;
-  width: 32px;
-  background-color: #0093ff;
+  height: 1.455em;
+  width: 1.455em;
+  background-color: #96d607;
   border: none;
   position: absolute;
   top: 0;
   right: 0;
-  border-top-right-radius: 6px;
+  border-top-right-radius: 0.29em;
 }
 
 .HotspotLabel {
   font-weight: bold;
-  margin-top: 5px;
-  margin-left: 10px;
+  top: 0.313em;
+  left: 0.625em;
   float: left;
+  position: absolute;
+  text-shadow: 1px 1px #000000;
 }
 
 .HotspotAnnotation {
-  margin-top: 5px;
-  margin-left: 18px;
+  float: left;
+  margin-top: 0.313em;
+  margin-left: 1.75em;
+  margin-bottom: 0.125em;
   display: inline-block;
 }
 
 .HotspotBody {
-  padding: 10px;
-}
-
-.HotspotBookmark {
-  height: 30px;
+  background-color: #696668;
+  padding: 0.625em;
+  height: 9.000em;
+  overflow: scroll;
+  overflow-x: hidden;
+  border-bottom-right-radius: 0.375em;
+  border-bottom-left-radius: 0.375em;
 }
 
 @keyframes scrollbar__slideInUp {
-  from { bottom: -10em; }
-  to { bottom: 0; }
+	from { bottom: -10em; }
+	to { bottom: 0; }
 }
 
 @keyframes scrollbar__slideOutDown {
-  from { bottom: 0; }
-  to { bottom: -10em; }
+	from { bottom: 0; }
+	to { bottom: -10em; }
 }
 
 .scrollbar__slideInUp {
-  animation-name: scrollbar__slideInUp;
+	animation-name: scrollbar__slideInUp;
 }
 
 .scrollbar__slideOutDown {
-  animation-name: scrollbar__slideOutDown;
+	animation-name: scrollbar__slideOutDown;
 }
 
 .scrollbar__animated {
-  animation-duration: 1s;
+	animation-duration: 1s;
 }
 
 .HotspotMobile {
+  top: 0;
+  left: 0;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -555,5 +614,17 @@ body {
   .HotspotDesktop {
     visibility: hidden;
   }
+
+  .HotspotBody {
+    height: inherit;
+  }
+
+  .HotspotExpanded {
+    transform: none;
+  }
 }
 
+/* Override Materialize background color */
+button:focus {
+  background-color: #96d607;
+}
