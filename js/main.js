@@ -109,7 +109,7 @@ var modelUpdater = {
 
         newSlide.setAttribute("class",  "slide" + (selected ? " selected" : ""));
         newSlide.setAttribute("onclick", `clickSwitch(this, ${index});`);
-        newSlide.setAttribute("style", "background-image: url(" + this.modelData.objects[index].poster + ");")
+        newSlide.setAttribute("style", `background-image: url(${this.modelData.objects[index].poster});`)
 
         return newSlide;
     },
