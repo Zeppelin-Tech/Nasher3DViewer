@@ -205,8 +205,6 @@ function closedInfo() {
 
 // TODO; Eventually, we will have to load data for the object we are viewing, but for now we cannot request that from the browser.
 function loadObjectInfo() {
-    let req = new XMLHttpRequest();
-
     // Get elements where we are placing the info
     let titleSpan = document.getElementById("titlespan");
     let labelSpan = document.getElementById("labelspan");
@@ -217,10 +215,11 @@ function loadObjectInfo() {
     let numberSpan = document.getElementById("numberspan");
     let dimensionSpan = document.getElementById("dimensionspan");
 
-    // Set up request callback
-    req.onreadystatechange = function () {
-        if (req.readyState === 4 && req.status === 200) {
-            let obj = JSON.parse(req.responseText).object;
+    // Fetch JSON data for object
+    let promise = fetch("models/2213.json");
+    promise.then(response => response.json())
+        .then(data => {
+            let obj = data.object;
 
             // Title
             if (obj.hasOwnProperty("title")) {
@@ -276,12 +275,7 @@ function loadObjectInfo() {
             } else {
                 dimensionSpan.parentElement.parentElement.remove();
             }
-        }
-    }
-
-    // Form and send async request for JSON data
-    req.open("GET", "models/2213.json", true);
-    req.send();
+        })
 }
 
 let hotspotCounter = 1;
