@@ -108,7 +108,7 @@ var modelUpdater = {
         let newSlide = document.createElement("button");
 
         newSlide.setAttribute("class",  "slide" + (selected ? " selected" : ""));
-        newSlide.setAttribute("onclick", "modelUpdater.updateModel(this, " + index + ")");
+        newSlide.setAttribute("onclick", `clickSwitch(this, ${index});`);
         newSlide.setAttribute("style", "background-image: url(" + this.modelData.objects[index].poster + ");")
 
         return newSlide;
@@ -116,16 +116,22 @@ var modelUpdater = {
 	rightModelPressed: function() {
 		if (this.currentIndex < this.modelData.objects.length - 1) {
 			this.currentIndex++;
-			let slides = document.getElementsByClassName("slide");
-			this.updateModel(slides[this.currentIndex], this.currentIndex)
 		}
+		else {
+		    this.currentIndex = 0;
+        }
+        let slides = document.getElementsByClassName("slide");
+        this.updateModel(slides[this.currentIndex], this.currentIndex)
 	},
 	leftModelPressed: function() {
 		if (this.currentIndex > 0) {
 			this.currentIndex--;
-			let slides = document.getElementsByClassName("slide");
-			this.updateModel(slides[this.currentIndex], this.currentIndex)
 		}
+		else {
+		    this.currentIndex = this.modelData.objects.length - 1;
+        }
+        let slides = document.getElementsByClassName("slide");
+        this.updateModel(slides[this.currentIndex], this.currentIndex)
 	}
 }
 
