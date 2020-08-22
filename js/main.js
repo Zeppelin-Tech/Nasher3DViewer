@@ -3,40 +3,6 @@
 // import * as data from 'json/sample.json';
 // const {name} = data;
 
-let data = JSON.parse("{\n" +
-    "\t\"title\": \"Some 3D Collection\",\n" +
-    "\t\"desc\": \"This is a description of this particular collection of 3D objects.\",\n" +
-    "\t\"viewer-settings\": \"some array of additional global model-viewer settings could go here (shadow intensity, autoplay, environment image, etc)\",\n" +
-    "\t\"objects\": [{\n" +
-    "\t\t\t\"id\": 2213,\n" +
-    "\t\t\t\"poster\": \"models/2213.png\",\n" +
-    "\t\t\t\"src\": \"models/2213.glb\",\n" +
-    "\t\t\t\"ios\": \"models.2213.usdz\",\n" +
-    "\t\t\t\"hotspots\": [{\n" +
-    "\t\t\t\t\t\"label\": \"Ceramic Paint\",\n" +
-    "\t\t\t\t\t\"body\": \"HOTSPOT 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n" +
-    "\t\t\t\t\t\"position\": \"0.4007812111279194m 0.5728657373429219m 1.097146245737618m\",\n" +
-    "\t\t\t\t\t\"normal\": \"0.16744492173726025m 0.8337560844961998m 0.5261302022788354m\",\n" +
-    "\t\t\t\t\t\"visibility\": \"visible\"\n" +
-    "\t\t\t\t},\n" +
-    "\t\t\t\t{\n" +
-    "\t\t\t\t\t\"label\": \"Brown Corn\",\n" +
-    "\t\t\t\t\t\"body\": \"HOTSPOT 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n" +
-    "\t\t\t\t\t\"position\": \"-0.5732061558897641m 0.5330821278667062m 0.9063000376948391m\",\n" +
-    "\t\t\t\t\t\"normal\": \"-0.9294973541164393m -0.05834724631259222m 0.364184386730508m\",\n" +
-    "\t\t\t\t\t\"visibility\": \"visible\"\n" +
-    "\n" +
-    "\t\t\t\t}\n" +
-    "\t\t\t]\n" +
-    "\t\t},\n" +
-    "\t\t{\n" +
-    "\t\t\t\"id\": 9671,\n" +
-    "\t\t\t\"poster\": \"models/9671.png\",\n" +
-    "\t\t\t\"src\": \"models/9671.glb\",\n" +
-    "\t\t\t\"ios\": \"models.9671.usdz\"\n" +
-    "\t\t}\n" +
-    "\t]\n" +
-    "}");
 // use shift + left/right to swap models
 function keydown(e) {
 	if (e.shiftKey) {
@@ -55,7 +21,7 @@ function keydown(e) {
 
 var modelUpdater = {
     modelViewer: 0,
-    modelData: data,
+    modelData: {}, 
     currentIndex: 0,
     presentationMode: false,
     deleteHotspots: function () {
@@ -144,18 +110,20 @@ let scrollBarHidden = false;
 
 function main() {
     // modify page based on URL parameters
-    let embedded = getQueryVariable("embed") === "true";
-    console.log(embedded);
+    let urlParams = processUrl();
 
-    if (embedded) {
+    if (urlParams.has('embedded')) {
         let logo = document.getElementById("logo");
         logo.style.display = "none";
     }
 
-    let viewer = document.querySelector("model-viewer")
-    modelUpdater.modelViewer = viewer;
-    modelUpdater.drawHotspots(0);
-    modelUpdater.drawScrollBar(0);
+	let dataFile = 'sample'
+	if (urlParams.has('models')) {
+		dataFile = urlParams.get('models');
+	}
+	initModelData(dataFile);
+
+
 
     // Set up info button press callback
     document.getElementById("info").onclick = pressedInfoDiv;
@@ -165,19 +133,59 @@ function main() {
     loadObjectInfo(data.objects[0].id);
 }
 
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);    // grab parameters from URL
-    var vars = query.split("&");
+function processUrl() {
+    let url = window.location.search;
 
-    for (var i = 0; i < vars.length; i++) {
+	const urlParams = new parseUrlParams(url);
+    return urlParams; 
+}
 
-        var pair = vars[i].split("=");
+function parseUrlParams(url) {
+	if (url.charAt(0) == '?') {
+		url = url.substring(1);
+	}
+	url = url.split('&');
 
-        if (pair[0] === variable) {
-            return pair[1];
-        }
-    }
-    return false;
+	let params = {
+		has: function(property) {
+			return this.hasOwnProperty(property);
+		},
+		get: function(property) {
+			return this[property];
+		}
+	};
+	for (let i = 0; i < url.length; i++) {
+		let vals = url[i].split('=');
+		if (vals.length == 1) {
+			params[vals[0]] = 'true';
+		}
+		else {
+			params[vals[0]] = vals[1];
+		}
+	}
+	return params;
+}
+
+function initModelData(fileName) {
+	let promise = fetch(`json/${fileName}.JSON`);
+
+	promise.then(response => {
+			if (!response.ok) { initModelData('sample'); }
+			else { return response.json(); }
+		})
+		.then(data => {
+			modelUpdater.modelData = data;
+			loadModelData();
+		})
+}
+
+function loadModelData() {
+    let viewer = document.querySelector("model-viewer")
+	viewer.src = modelUpdater.modelData.objects[0].src;
+	viewer.iosSrc = modelUpdater.modelData.objects[0].ios;
+    modelUpdater.modelViewer = viewer;
+    modelUpdater.drawHotspots(0);
+    modelUpdater.drawScrollBar(0);
 }
 
 function pressedInfoDiv() {
