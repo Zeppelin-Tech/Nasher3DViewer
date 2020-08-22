@@ -10,6 +10,7 @@
   <meta name="theme-color" content="#fafafa">
 
   <script src="json/sample.json"></script>
+  <script src="js/info.js"></script>
   <script src="js/main.js"></script>
   <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
@@ -51,42 +52,9 @@
 
 <div id="infobox">
   <a class="waves-effect waves-grey btn-flat" id="infoclose"><i class="fas fa-times"></i></a>
-  <ul class="collapsible">
-    <li>
-      <div class="collapsible-header">
-        <i class="fas fa-tag"></i>
-        <div>
-          <span id="titlespan">Title</span>
-          <span id="artistspan">Placeholder</span>
-        </div>
-      </div>
-    </li>
-    <li id="labelouter">
-      <div class="collapsible-header"><i class="fas fa-scroll"></i>Label</div>
-      <div class="collapsible-body"><span id="labelspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-box"></i>Classification</div>
-      <div class="collapsible-body"><span id="classificationspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-hammer"></i>Medium</div>
-      <div class="collapsible-body"><span id="mediumspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-ruler-combined"></i>Dimensions</div>
-      <div class="collapsible-body"><span id="dimensionspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="far fa-copyright"></i>Credit</div>
-      <div class="collapsible-body"><span id="creditspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-archive"></i>Object Number</div>
-      <div class="collapsible-body"><span id="numberspan">Placeholder</span></div>
-    </li>
+  <ul class="collapsible" id="infolist">
   </ul>
-
 </div>
+
 </body>
 </html>

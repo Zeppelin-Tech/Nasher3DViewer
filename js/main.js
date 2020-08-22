@@ -115,25 +115,15 @@ function main() {
 
     let viewer = document.querySelector("model-viewer")
     modelUpdater.modelViewer = viewer;
-    modelUpdater.drawHotspots(0)
-    modelUpdater.drawScrollBar(0)
-
-    // Initialize required materialize things
-    initMaterializeComponents();
+    modelUpdater.drawHotspots(0);
+    modelUpdater.drawScrollBar(0);
 
     // Set up info button press callback
     document.getElementById("info").onclick = pressedInfoDiv;
     document.getElementById("infoclose").onclick = closedInfo;
 
-    // Initialize required materialize things
-    initMaterializeComponents();
-
-    // Set up info button press callback
-    document.getElementById("info").onclick = pressedInfoDiv;
-    document.getElementById("infoclose").onclick = closedInfo;
-
-    // Load the information for the object we are viewing
-    loadObjectInfo();
+    // Load the information for the object we are viewing TODO; Don't hardcode ID!
+    loadObjectInfo(2213);
 }
 
 function getQueryVariable(variable) {
@@ -151,11 +141,6 @@ function getQueryVariable(variable) {
     return false;
 }
 
-function initMaterializeComponents() {
-    let collapsibleElems = document.querySelectorAll('.collapsible');
-    let collapsibleInstances = M.Collapsible.init(collapsibleElems, null);
-}
-
 function pressedInfoDiv() {
     let box = document.getElementById("infobox");
     box.style.display = "block";
@@ -167,81 +152,6 @@ function closedInfo() {
     let box = document.getElementById("infobox");
     box.classList.remove('animate__animated', 'animate__slideInRight')
     box.classList.add('animate__animated', 'animate__slideOutRight');
-}
-
-// TODO; Eventually, we will have to load data for the object we are viewing, but for now we cannot request that from the browser.
-function loadObjectInfo() {
-    // Get elements where we are placing the info
-    let titleSpan = document.getElementById("titlespan");
-    let labelSpan = document.getElementById("labelspan");
-    let artistSpan = document.getElementById("artistspan");
-    let classificationSpan = document.getElementById("classificationspan");
-    let mediumSpan = document.getElementById("mediumspan");
-    let creditSpan = document.getElementById("creditspan");
-    let numberSpan = document.getElementById("numberspan");
-    let dimensionSpan = document.getElementById("dimensionspan");
-
-    // Fetch JSON data for object
-    let promise = fetch("models/2213.json");
-    promise.then(response => response.json())
-        .then(data => {
-            let obj = data.object;
-
-            // Title
-            if (obj.hasOwnProperty("title")) {
-                titleSpan.innerText = obj.title.value;
-            } else {
-                titleSpan.parentElement.parentElement.remove();
-            }
-
-            // Label
-            if (obj.hasOwnProperty("labelText")) {
-                labelSpan.innerText = obj.labelText.value;
-            } else {
-                labelSpan.parentElement.parentElement.remove();
-            }
-
-            // Artist
-            if (obj.hasOwnProperty("people")) {
-                artistSpan.innerText = "Artist: " + obj.people.value;
-            } else {
-                artistSpan.parentElement.parentElement.remove();
-            }
-
-            // Classification
-            if (obj.hasOwnProperty("classification")) {
-                classificationSpan.innerText = obj.classification.value;
-            } else {
-                classificationSpan.parentElement.parentElement.remove();
-            }
-
-            // Medium
-            if (obj.hasOwnProperty("medium")) {
-                mediumSpan.innerText = obj.medium.value;
-            } else {
-                mediumSpan.parentElement.parentElement.remove();
-            }
-
-            // Credit
-            if (obj.hasOwnProperty("creditline")) {
-                creditSpan.innerText = obj.creditline.value;
-            } else {
-                creditSpan.parentElement.parentElement.remove();
-            }
-
-            // Object Number
-            if (obj.hasOwnProperty("invno")) {
-                numberSpan.innerText = obj.invno.value;
-            } else {
-                numberSpan.parentElement.parentElement.remove();
-            }
-
-            if (obj.hasOwnProperty("dimensions")) {
-                dimensionSpan.innerText = obj.dimensions.value;
-            } else {
-                dimensionSpan.parentElement.parentElement.remove();
-            }
-        })
 }
 
 let hotspotCounter = 1;
