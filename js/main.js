@@ -37,7 +37,21 @@ let data = JSON.parse("{\n" +
     "\t\t}\n" +
     "\t]\n" +
     "}");
-
+// use shift + left/right to swap models
+function keydown(e) {
+	if (e.shiftKey) {
+		switch (e.keyCode) {
+			case 37:
+				modelUpdater.leftModelPressed();
+				break;
+			case 39:
+				modelUpdater.rightModelPressed();
+				break;
+			default:
+				break;
+		}
+	}
+}
 
 var modelUpdater = {
     modelViewer: 0,
@@ -94,11 +108,31 @@ var modelUpdater = {
         let newSlide = document.createElement("button");
 
         newSlide.setAttribute("class",  "slide" + (selected ? " selected" : ""));
-        newSlide.setAttribute("onclick", "modelUpdater.updateModel(this, " + index + ")");
+        newSlide.setAttribute("onclick", `clickSwitch(this, ${index});`);
         newSlide.setAttribute("style", "background-image: url(" + this.modelData.objects[index].poster + ");")
 
         return newSlide;
-    }
+    },
+	rightModelPressed: function() {
+		if (this.currentIndex < this.modelData.objects.length - 1) {
+			this.currentIndex++;
+		}
+		else {
+		    this.currentIndex = 0;
+        }
+        let slides = document.getElementsByClassName("slide");
+        this.updateModel(slides[this.currentIndex], this.currentIndex)
+	},
+	leftModelPressed: function() {
+		if (this.currentIndex > 0) {
+			this.currentIndex--;
+		}
+		else {
+		    this.currentIndex = this.modelData.objects.length - 1;
+        }
+        let slides = document.getElementsByClassName("slide");
+        this.updateModel(slides[this.currentIndex], this.currentIndex)
+	}
 }
 
 let scrollBarHidden = false;

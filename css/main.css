@@ -267,7 +267,8 @@ body {
 
 #viewer {
   width: 100%;
-  height: 100%;
+  height: 120%;
+  top: -20%;
   position: absolute;
 }
 
@@ -627,4 +628,22 @@ body {
 /* Override Materialize background color */
 button:focus {
   background-color: #96d607;
+}
+
+.modelButton {
+  transform: scale(1, 1.5);
+  /*color: #9e9e9e;*/
+  height: 10%;
+}
+
+#rightModelButton {
+  right: 2em;
+  position: absolute;
+  top: 50%;
+}
+
+#leftModelButton {
+  left: 2em;
+  position: absolute;
+  top: 50%;
 }
