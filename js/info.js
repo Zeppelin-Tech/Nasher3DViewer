@@ -49,6 +49,9 @@ function loadObjectInfo(id) {
             // List of collapsibles
             let list = document.getElementById("infolist");
 
+            // Clear old data from list
+            list.innerHTML = "";
+
             // Require special handling for title & author because of how they are shown together
             let title = "Unknown";
             let author = "Unknown";

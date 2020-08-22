@@ -72,8 +72,13 @@ var modelUpdater = {
         slides.forEach((element) => { element.classList.remove("selected")});
         element.classList.add("selected");
         if (this.presentationMode) { return; }
+
+        // Redo hotspots for new model
         this.deleteHotspots();
         this.drawHotspots(index);
+
+        // Load info for new model
+        loadObjectInfo(newModel.id);
     },
     togglePresentationMode: function() {
         if (this.presentationMode) {
@@ -122,8 +127,8 @@ function main() {
     document.getElementById("info").onclick = pressedInfoDiv;
     document.getElementById("infoclose").onclick = closedInfo;
 
-    // Load the information for the object we are viewing TODO; Don't hardcode ID!
-    loadObjectInfo(2213);
+    // Load the information for first object
+    loadObjectInfo(data.objects[0].id);
 }
 
 function getQueryVariable(variable) {
