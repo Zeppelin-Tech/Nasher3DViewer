@@ -632,6 +632,15 @@ body {
   .HotspotExpanded {
     transform: none;
   }
+
+  #creditLine {
+    float: left;
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    font-size: 8px;
+    color: #999999;
+  }
 }
 
 /* Override Materialize background color */
