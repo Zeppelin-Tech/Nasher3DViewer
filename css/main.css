@@ -408,6 +408,8 @@ body {
 
 #models > .slide {
 
+  border: 1px solid black;
+  box-shadow: 8px 8px 8px #888888;
   scroll-snap-align: start;
   flex-shrink: 0;
   height: 8em;
@@ -418,12 +420,11 @@ body {
   background-position: center;
   background-color: #fff;
   margin-right: 1em;
-  border: none;
   display: flex;
 }
 
 #models > .slide.selected {
-  border: 2px solid #0062b2
+  border: 3px solid #0062b2
 }
 
 #creditLine {
@@ -437,7 +438,7 @@ body {
 
 #scrollBarHider {
 	height: 1em;
-	width: 5%;
+	width: 4em;
 	left: 47.5%;
 	position: relative;
 	border-radius: 4px 4px 0px 0px;
@@ -640,6 +641,17 @@ body {
     left: 1em;
     font-size: 8px;
     color: #999999;
+  }
+
+  #scrollBarHider {
+    height: 1em;
+    width: 3em;
+    left: 47.5%;
+    position: relative;
+    border-radius: 4px 4px 0px 0px;
+    background-color: #dedede;
+    padding: 0.5em;
+    opacity: 85%;
   }
 }
 
