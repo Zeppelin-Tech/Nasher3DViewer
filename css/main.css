@@ -607,12 +607,24 @@ body {
   .HotspotMobile {
     visibility: hidden;
   }
+
+  .HotspotDesktop {
+    visibility: visible;
+  }
+
+  .ViewingHotspot {
+    visibility: visible;
+  }
 }
 
 /* Hide normal hotspot body when aspect ratio is less than 1 */
 @media screen and (max-aspect-ratio: 1 / 1) {
   .HotspotDesktop {
     visibility: hidden;
+  }
+
+  .HotspotMobile {
+    visibility: visible;
   }
 
   .HotspotBody {
@@ -637,9 +649,18 @@ body {
     height: inherit;
     font-size: 1.5em;
   }
+
+  .ViewingHotspot {
+    visibility: hidden;
+  }
 }
 
 /* Override Materialize background color */
 button:focus {
   background-color: #96d607;
+}
+
+/* Hide other elements when a mobile hotspot is visible */
+.HotspotMobile:focus-visible {
+  background-color: red;
 }

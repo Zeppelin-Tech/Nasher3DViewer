@@ -331,17 +331,29 @@ function createHotspot(hotspot, slot) {
         minimized.style.display = "none";
         expanded.style.display = "block";
         mobileExpanded.style.display = "block";
+
+        // Apply indicator class to everything we want to hide when we are viewing a mobile hotspot
+        document.getElementById("buttonbox").classList.add("ViewingHotspot");
+        document.getElementById("infobox").classList.add("ViewingHotspot");
+        document.getElementById("logo").classList.add("ViewingHotspot");
+        document.getElementById("scrollBar").classList.add("ViewingHotspot");
     }
 
-    // Apply same close callback to both of our buttons, for the mobile AND desktop hotspot
+    // Same basic callback used in both desktop & mobile hotspots
     let closeCallback = function() {
         minimized.style.display = "block";
         expanded.style.display = "none";
         mobileExpanded.style.display = "none";
+
+        // Remove hotspot viewing indicator class
+        document.getElementById("buttonbox").classList.remove("ViewingHotspot");
+        document.getElementById("infobox").classList.remove("ViewingHotspot");
+        document.getElementById("logo").classList.remove("ViewingHotspot");
+        document.getElementById("scrollBar").classList.remove("ViewingHotspot");
     }
 
     close.onclick = closeCallback;
-    mobileExpanded.childNodes[0].childNodes[2].onclick = closeCallback; // This feels sketchy but I cannot think of a better way right now
+    mobileExpanded.childNodes[0].childNodes[2].onclick = closeCallback;
 
     hotspotCounter++;
     return newHotspot
