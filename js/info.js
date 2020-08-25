@@ -39,7 +39,7 @@ function createHeaderWithIcon(iconName) {
 // TODO; Eventually, we will have to load data for the object we are viewing, but for now we cannot request that from the browser.
 function loadObjectInfo(id) {
     // Fetch JSON data for object
-    let promise = fetch("models/" + id + ".json");
+    let promise = fetch(`models/${id}.json`);
 
     // Set up async callback for promise
     promise.then(response => response.json())
