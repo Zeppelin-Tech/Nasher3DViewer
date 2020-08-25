@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:presentationMode" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4d8635f7-58c3-4e48-9801-6d269b0ea7df" name="Default Changelist" comment="" />
+    <list id="4b4a700e-9998-4927-8f4f-3ccba34ca0e3" name="Working minimize button" comment="Working minimize button" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/Zeppelin-Tech/alifearch.git" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1f458woZuw4XVx3Rli3tiQn4uxq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\shotg\WebstormProjects\alifearch\json" />
+      <recent name="C:\Users\shotg\WebstormProjects\alifearch" />
+      <recent name="C:\Users\shotg\WebstormProjects\alifearch\public" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Attach to Node.js/Chrome.Unnamed">
+    <configuration name="Unnamed" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" nameIsGenerated="true" port="9229">
+      <method v="2" />
+    </configuration>
+    <configuration name="www" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Attach to Node.js/Chrome.Unnamed" />
+      <item itemvalue="Node.js.www" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4d8635f7-58c3-4e48-9801-6d269b0ea7df" name="Default Changelist" comment="" />
+      <created>1595464368336</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595464368336</updated>
+      <workItem from="1595464370592" duration="67000" />
+      <workItem from="1595464444058" duration="1038000" />
+      <workItem from="1595635970902" duration="319000" />
+      <workItem from="1595786443149" duration="6745000" />
+      <workItem from="1595820960625" duration="399000" />
+      <workItem from="1596138276586" duration="2737000" />
+      <workItem from="1596222153001" duration="644000" />
+      <workItem from="1596238869439" duration="7496000" />
+      <workItem from="1596499461199" duration="951000" />
+      <workItem from="1596651129476" duration="899000" />
+      <workItem from="1596758494629" duration="1862000" />
+      <workItem from="1597100242453" duration="5978000" />
+      <workItem from="1597363489474" duration="1870000" />
+      <workItem from="1597438787255" duration="8255000" />
+      <workItem from="1597595993083" duration="10364000" />
+      <workItem from="1597783776229" duration="11100000" />
+      <workItem from="1597940761447" duration="137000" />
+      <workItem from="1597941035611" duration="8000" />
+      <workItem from="1597941064896" duration="3000" />
+      <workItem from="1598046710431" duration="613000" />
+      <workItem from="1598054490408" duration="3888000" />
+      <workItem from="1598063676555" duration="632000" />
+      <workItem from="1598299423331" duration="98000" />
+      <workItem from="1598313726431" duration="750000" />
+    </task>
+    <task id="LOCAL-00001" summary="Working minimize button">
+      <created>1597788667662</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597788667662</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="presentationMode" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working minimize button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working minimize button" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="852" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596652028665">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="-1735" y="529" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440/-1920.349.1920.1080@-1920.349.1920.1080" timestamp="1595636291082" />
+    <state x="852" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1596652028665" />
+    <state x="885" y="306" key="CommitChangelistDialog2" timestamp="1597788620899">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="885" y="306" key="CommitChangelistDialog2/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1597788620899" />
+    <state x="949" y="498" key="EditFileWatcherDialog" timestamp="1595789308764">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="949" y="498" key="EditFileWatcherDialog/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1595789308764" />
+    <state width="2539" height="413" key="GridCell.Tab.0.bottom" timestamp="1596242348635">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2539" height="413" key="GridCell.Tab.0.bottom/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1596242348635" />
+    <state width="2539" height="413" key="GridCell.Tab.0.center" timestamp="1596242348635">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2539" height="413" key="GridCell.Tab.0.center/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1596242348635" />
+    <state width="2539" height="413" key="GridCell.Tab.0.left" timestamp="1596242348634">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2539" height="413" key="GridCell.Tab.0.left/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1596242348634" />
+    <state width="2539" height="413" key="GridCell.Tab.0.right" timestamp="1596242348635">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2539" height="413" key="GridCell.Tab.0.right/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1596242348635" />
+    <state x="248" y="126" key="MergeDialog" timestamp="1597789991867">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="248" y="126" key="MergeDialog/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1597789991867" />
+    <state x="918" y="481" key="MultipleFileMergeDialog" timestamp="1597789991872">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="918" y="481" key="MultipleFileMergeDialog/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1597789991872" />
+    <state x="781" y="364" key="SettingsEditor" timestamp="1597940858870">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="-1334" y="622" key="SettingsEditor/0.0.2560.1440/-1920.349.1920.1080@-1920.349.1920.1080" timestamp="1595464620331" />
+    <state x="781" y="364" key="SettingsEditor/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1595821359283" />
+    <state x="781" y="364" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1597940858870" />
+    <state x="872" y="452" key="Vcs.Push.Dialog.v2" timestamp="1595821077319">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="872" y="452" key="Vcs.Push.Dialog.v2/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1595821077319" />
+    <state x="943" y="325" width="672" height="678" key="search.everywhere.popup" timestamp="1597443894278">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="943" y="325" width="672" height="678" key="search.everywhere.popup/0.0.2560.1440/-1920.349.1920.1080@0.0.2560.1440" timestamp="1597443894278" />
+  </component>
+</project>
