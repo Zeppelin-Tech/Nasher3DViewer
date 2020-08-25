@@ -1,5 +1,6 @@
 "use strict";
 
+const defaultCollection = '367'
 // import * as data from 'json/sample.json';
 // const {name} = data;
 
@@ -117,7 +118,7 @@ function main() {
         logo.style.display = "none";
     }
 
-	let dataFile = '367'
+	let dataFile = defaultCollection
 	if (urlParams.has('collection')) {
 		dataFile = urlParams.get('collection');
 	}
@@ -169,7 +170,7 @@ function initModelData(fileName) {
 	let promise = fetch(`json/${fileName}.JSON`);
 
 	promise.then(response => {
-			if (!response.ok) { initModelData('367'); }
+			if (!response.ok) { initModelData(defaultCollection); }
 			else { return response.json(); }
 		})
 		.then(data => {
