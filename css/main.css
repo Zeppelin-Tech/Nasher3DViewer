@@ -608,6 +608,14 @@ body {
   .HotspotMobile {
     visibility: hidden;
   }
+
+  .HotspotDesktop {
+    visibility: visible;
+  }
+
+  .ViewingHotspot {
+    visibility: visible;
+  }
 }
 
 /* Hide normal hotspot body when aspect ratio is less than 1 */
@@ -616,12 +624,35 @@ body {
     visibility: hidden;
   }
 
+  .HotspotMobile {
+    visibility: visible;
+  }
+
   .HotspotBody {
     height: inherit;
+    border-radius: 0;
+    opacity: 0.85;
   }
 
   .HotspotExpanded {
     transform: none;
+    border-radius: 0;
+    font-size: 1.5em;
+  }
+
+  .HotspotHead {
+    border-radius: 0;
+    opacity: 0.9;
+  }
+
+  .HotspotClose {
+    border-radius: 0;
+    height: inherit;
+    font-size: 1.5em;
+  }
+
+  .ViewingHotspot {
+    visibility: hidden;
   }
 }
 
