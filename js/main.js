@@ -117,9 +117,9 @@ function main() {
         logo.style.display = "none";
     }
 
-	let dataFile = 'sample'
-	if (urlParams.has('models')) {
-		dataFile = urlParams.get('models');
+	let dataFile = '367'
+	if (urlParams.has('collection')) {
+		dataFile = urlParams.get('collection');
 	}
 	initModelData(dataFile);
 
@@ -130,7 +130,6 @@ function main() {
     document.getElementById("infoclose").onclick = closedInfo;
 
     // Load the information for first object
-    loadObjectInfo(data.objects[0].id);
 }
 
 function processUrl() {
@@ -170,7 +169,7 @@ function initModelData(fileName) {
 	let promise = fetch(`json/${fileName}.JSON`);
 
 	promise.then(response => {
-			if (!response.ok) { initModelData('sample'); }
+			if (!response.ok) { initModelData('367'); }
 			else { return response.json(); }
 		})
 		.then(data => {
@@ -186,6 +185,7 @@ function loadModelData() {
     modelUpdater.modelViewer = viewer;
     modelUpdater.drawHotspots(0);
     modelUpdater.drawScrollBar(0);
+    loadObjectInfo(modelUpdater.modelData.objects[0].id);
 }
 
 function pressedInfoDiv() {
