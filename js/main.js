@@ -124,8 +124,6 @@ function main() {
 	}
 	initModelData(dataFile);
 
-
-
     // Set up info button press callback
     document.getElementById("info").onclick = pressedInfoDiv;
     document.getElementById("infoclose").onclick = closedInfo;
@@ -167,7 +165,7 @@ function parseUrlParams(url) {
 }
 
 function initModelData(fileName) {
-	let promise = fetch(`json/${fileName}.JSON`);
+	let promise = fetch(`json/${fileName}.json`);
 
 	promise.then(response => {
 			if (!response.ok) { initModelData(defaultCollection); }
