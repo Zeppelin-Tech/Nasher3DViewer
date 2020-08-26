@@ -10,6 +10,7 @@
   <meta name="theme-color" content="#fafafa">
 
   <script src="json/sample.json"></script>
+  <script src="js/info.js"></script>
   <script src="js/main.js"></script>
   <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
@@ -30,8 +31,9 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="main()">
-<model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer" max-field-of-view="90deg" field-of-view="60deg">
+<body onload="main()" onkeydown="keydown(event)">
+<model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer" max-field-of-view="90deg" field-of-view="60deg" ar ar-scale="fixed">
+
 <div class="slider" id="scrollBar">
   <div id="creditLine">Developed by Zeppelin Tech</div>
   <div id="scrollBarHider" onclick="hideModelScroll()">
@@ -43,9 +45,13 @@
   <div class="slides" id="models"></div>
 </div>
 </model-viewer>
-
 <a href="https://nasher.duke.edu/"><img src="img/logo.png" alt="Nasher museum logo" id="logo"/></a>
-
+<div id="leftModelButton" onclick="modelUpdater.leftModelPressed()">
+	<i class="fa fa-chevron-left fa-3x modelButton" aria-hidden="true"></i>
+</div>
+<div id="rightModelButton" onclick="modelUpdater.rightModelPressed()">
+	<i class="fa fa-chevron-right fa-3x modelButton" aria-hidden="true"></i>
+</div>
 <div id="buttonbox">
   <a class="btn-floating btn-large waves-effect waves-light" id="info"><i class="fas fa-info"></i></a>
   <a class="btn-floating waves-effect waves-light grey" id="presentationModeSwitcher" onclick="modelUpdater.togglePresentationMode()"><i class="fas fa-tv"></i></a>
@@ -53,42 +59,15 @@
 
 <div id="infobox">
   <a class="waves-effect waves-grey btn-flat" id="infoclose"><i class="fas fa-times"></i></a>
-  <ul class="collapsible">
-    <li>
-      <div class="collapsible-header">
-        <i class="fas fa-tag"></i>
-        <div>
-          <span id="titlespan">Title</span>
-          <span id="artistspan">Placeholder</span>
-        </div>
-      </div>
-    </li>
-    <li id="labelouter">
-      <div class="collapsible-header"><i class="fas fa-scroll"></i>Label</div>
-      <div class="collapsible-body"><span id="labelspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-box"></i>Classification</div>
-      <div class="collapsible-body"><span id="classificationspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-hammer"></i>Medium</div>
-      <div class="collapsible-body"><span id="mediumspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-ruler-combined"></i>Dimensions</div>
-      <div class="collapsible-body"><span id="dimensionspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="far fa-copyright"></i>Credit</div>
-      <div class="collapsible-body"><span id="creditspan">Placeholder</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fas fa-archive"></i>Object Number</div>
-      <div class="collapsible-body"><span id="numberspan">Placeholder</span></div>
-    </li>
+  <ul class="collapsible" id="infolist">
   </ul>
-
 </div>
+
 </body>
+<script type="text/javascript">
+  function clickSwitch(element, index) {
+    modelUpdater.updateModel(element, index);
+    hideModelScroll();
+  }
+</script>
 </html>

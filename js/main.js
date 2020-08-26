@@ -1,47 +1,28 @@
 "use strict";
 
+const defaultCollection = '367'
 // import * as data from 'json/sample.json';
 // const {name} = data;
 
-let data = JSON.parse("{\n" +
-    "\t\"title\": \"Some 3D Collection\",\n" +
-    "\t\"desc\": \"This is a description of this particular collection of 3D objects.\",\n" +
-    "\t\"viewer-settings\": \"some array of additional global model-viewer settings could go here (shadow intensity, autoplay, environment image, etc)\",\n" +
-    "\t\"objects\": [{\n" +
-    "\t\t\t\"id\": 2213,\n" +
-    "\t\t\t\"poster\": \"models/2213.png\",\n" +
-    "\t\t\t\"src\": \"models/2213.glb\",\n" +
-    "\t\t\t\"ios\": \"models.2213.usdz\",\n" +
-    "\t\t\t\"hotspots\": [{\n" +
-    "\t\t\t\t\t\"label\": \"Ceramic Paint\",\n" +
-    "\t\t\t\t\t\"body\": \"HOTSPOT 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n" +
-    "\t\t\t\t\t\"position\": \"0.4007812111279194m 0.5728657373429219m 1.097146245737618m\",\n" +
-    "\t\t\t\t\t\"normal\": \"0.16744492173726025m 0.8337560844961998m 0.5261302022788354m\",\n" +
-    "\t\t\t\t\t\"visibility\": \"visible\"\n" +
-    "\t\t\t\t},\n" +
-    "\t\t\t\t{\n" +
-    "\t\t\t\t\t\"label\": \"Brown Corn\",\n" +
-    "\t\t\t\t\t\"body\": \"HOTSPOT 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n" +
-    "\t\t\t\t\t\"position\": \"-0.5732061558897641m 0.5330821278667062m 0.9063000376948391m\",\n" +
-    "\t\t\t\t\t\"normal\": \"-0.9294973541164393m -0.05834724631259222m 0.364184386730508m\",\n" +
-    "\t\t\t\t\t\"visibility\": \"visible\"\n" +
-    "\n" +
-    "\t\t\t\t}\n" +
-    "\t\t\t]\n" +
-    "\t\t},\n" +
-    "\t\t{\n" +
-    "\t\t\t\"id\": 9671,\n" +
-    "\t\t\t\"poster\": \"models/9671.png\",\n" +
-    "\t\t\t\"src\": \"models/9671.glb\",\n" +
-    "\t\t\t\"ios\": \"models.9671.usdz\"\n" +
-    "\t\t}\n" +
-    "\t]\n" +
-    "}");
-
+// use shift + left/right to swap models
+function keydown(e) {
+	if (e.shiftKey) {
+		switch (e.keyCode) {
+			case 37:
+				modelUpdater.leftModelPressed();
+				break;
+			case 39:
+				modelUpdater.rightModelPressed();
+				break;
+			default:
+				break;
+		}
+	}
+}
 
 var modelUpdater = {
     modelViewer: 0,
-    modelData: data,
+    modelData: {}, 
     currentIndex: 0,
     presentationMode: false,
     deleteHotspots: function () {
@@ -72,8 +53,13 @@ var modelUpdater = {
         slides.forEach((element) => { element.classList.remove("selected")});
         element.classList.add("selected");
         if (this.presentationMode) { return; }
+
+        // Redo hotspots for new model
         this.deleteHotspots();
         this.drawHotspots(index);
+
+        // Load info for new model
+        loadObjectInfo(newModel.id);
     },
     togglePresentationMode: function() {
         if (this.presentationMode) {
@@ -94,66 +80,111 @@ var modelUpdater = {
         let newSlide = document.createElement("button");
 
         newSlide.setAttribute("class",  "slide" + (selected ? " selected" : ""));
-        newSlide.setAttribute("onclick", "modelUpdater.updateModel(this, " + index + ")");
+        newSlide.setAttribute("onclick", `clickSwitch(this, ${index});`);
         newSlide.setAttribute("style", "background-image: url(" + this.modelData.objects[index].poster + ");")
 
         return newSlide;
-    }
+    },
+	rightModelPressed: function() {
+		if (this.currentIndex < this.modelData.objects.length - 1) {
+			this.currentIndex++;
+		}
+		else {
+		    this.currentIndex = 0;
+        }
+        let slides = document.getElementsByClassName("slide");
+        this.updateModel(slides[this.currentIndex], this.currentIndex)
+	},
+	leftModelPressed: function() {
+		if (this.currentIndex > 0) {
+			this.currentIndex--;
+		}
+		else {
+		    this.currentIndex = this.modelData.objects.length - 1;
+        }
+        let slides = document.getElementsByClassName("slide");
+        this.updateModel(slides[this.currentIndex], this.currentIndex)
+	}
 }
 
 let scrollBarHidden = false;
 
 function main() {
     // modify page based on URL parameters
-    let embedded = getQueryVariable("embed") === "true";
-    console.log(embedded);
+    let urlParams = processUrl();
 
-    if (embedded) {
+    if (urlParams.has('embedded')) {
         let logo = document.getElementById("logo");
         logo.style.display = "none";
     }
 
+	let dataFile = defaultCollection
+	if (urlParams.has('collection')) {
+		dataFile = urlParams.get('collection');
+	}
+	initModelData(dataFile);
+
+    // Set up info button press callback
+    document.getElementById("info").onclick = pressedInfoDiv;
+    document.getElementById("infoclose").onclick = closedInfo;
+
+    // Load the information for first object
+}
+
+function processUrl() {
+    let url = window.location.search;
+
+	const urlParams = new parseUrlParams(url);
+    return urlParams; 
+}
+
+function parseUrlParams(url) {
+	if (url.charAt(0) == '?') {
+		url = url.substring(1);
+	}
+	url = url.split('&');
+
+	let params = {
+		has: function(property) {
+			return this.hasOwnProperty(property);
+		},
+		get: function(property) {
+			return this[property];
+		}
+	};
+	for (let i = 0; i < url.length; i++) {
+		let vals = url[i].split('=');
+		if (vals.length == 1) {
+			params[vals[0]] = 'true';
+		}
+		else {
+			params[vals[0]] = vals[1];
+		}
+	}
+	return params;
+}
+
+function initModelData(fileName) {
+	let promise = fetch(`json/${fileName}.json`);
+
+	promise.then(response => {
+			if (!response.ok) { initModelData(defaultCollection); }
+			else { return response.json(); }
+		})
+		.then(data => {
+			modelUpdater.modelData = data;
+			loadModelData();
+		})
+}
+
+function loadModelData() {
     let viewer = document.querySelector("model-viewer")
+	viewer.src = modelUpdater.modelData.objects[0].src;
+	viewer.iosSrc = modelUpdater.modelData.objects[0].ios;
     modelUpdater.modelViewer = viewer;
-    modelUpdater.drawHotspots(0)
-    modelUpdater.drawScrollBar(0)
-
-    // Initialize required materialize things
-    initMaterializeComponents();
-
-    // Set up info button press callback
-    document.getElementById("info").onclick = pressedInfoDiv;
-    document.getElementById("infoclose").onclick = closedInfo;
-
-    // Initialize required materialize things
-    initMaterializeComponents();
-
-    // Set up info button press callback
-    document.getElementById("info").onclick = pressedInfoDiv;
-    document.getElementById("infoclose").onclick = closedInfo;
-
-    // Load the information for the object we are viewing
-    loadObjectInfo();
-}
-
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);    // grab parameters from URL
-    var vars = query.split("&");
-
-    for (var i = 0; i < vars.length; i++) {
-
-        var pair = vars[i].split("=");
-
-        if (pair[0] === variable) {
-            return pair[1];
-        }
-    }
-    return false;
-}
-
-function initMaterializeComponents() {
-    let collapsibleElems = document.querySelectorAll('.collapsible');
-    let collapsibleInstances = M.Collapsible.init(collapsibleElems, null);
+    modelUpdater.drawHotspots(0);
+    modelUpdater.drawScrollBar(0);
+    loadObjectInfo(modelUpdater.modelData.objects[0].id);
 }
 
 function pressedInfoDiv() {
@@ -167,87 +198,6 @@ function closedInfo() {
     let box = document.getElementById("infobox");
     box.classList.remove('animate__animated', 'animate__slideInRight')
     box.classList.add('animate__animated', 'animate__slideOutRight');
-}
-
-// TODO; Eventually, we will have to load data for the object we are viewing, but for now we cannot request that from the browser.
-function loadObjectInfo() {
-    let req = new XMLHttpRequest();
-
-    // Get elements where we are placing the info
-    let titleSpan = document.getElementById("titlespan");
-    let labelSpan = document.getElementById("labelspan");
-    let artistSpan = document.getElementById("artistspan");
-    let classificationSpan = document.getElementById("classificationspan");
-    let mediumSpan = document.getElementById("mediumspan");
-    let creditSpan = document.getElementById("creditspan");
-    let numberSpan = document.getElementById("numberspan");
-    let dimensionSpan = document.getElementById("dimensionspan");
-
-    // Set up request callback
-    req.onreadystatechange = function () {
-        if (req.readyState === 4 && req.status === 200) {
-            let obj = JSON.parse(req.responseText).object;
-
-            // Title
-            if (obj.hasOwnProperty("title")) {
-                titleSpan.innerText = obj.title.value;
-            } else {
-                titleSpan.parentElement.parentElement.remove();
-            }
-
-            // Label
-            if (obj.hasOwnProperty("labelText")) {
-                labelSpan.innerText = obj.labelText.value;
-            } else {
-                labelSpan.parentElement.parentElement.remove();
-            }
-
-            // Artist
-            if (obj.hasOwnProperty("people")) {
-                artistSpan.innerText = "Artist: " + obj.people.value;
-            } else {
-                artistSpan.parentElement.parentElement.remove();
-            }
-
-            // Classification
-            if (obj.hasOwnProperty("classification")) {
-                classificationSpan.innerText = obj.classification.value;
-            } else {
-                classificationSpan.parentElement.parentElement.remove();
-            }
-
-            // Medium
-            if (obj.hasOwnProperty("medium")) {
-                mediumSpan.innerText = obj.medium.value;
-            } else {
-                mediumSpan.parentElement.parentElement.remove();
-            }
-
-            // Credit
-            if (obj.hasOwnProperty("creditline")) {
-                creditSpan.innerText = obj.creditline.value;
-            } else {
-                creditSpan.parentElement.parentElement.remove();
-            }
-
-            // Object Number
-            if (obj.hasOwnProperty("invno")) {
-                numberSpan.innerText = obj.invno.value;
-            } else {
-                numberSpan.parentElement.parentElement.remove();
-            }
-
-            if (obj.hasOwnProperty("dimensions")) {
-                dimensionSpan.innerText = obj.dimensions.value;
-            } else {
-                dimensionSpan.parentElement.parentElement.remove();
-            }
-        }
-    }
-
-    // Form and send async request for JSON data
-    req.open("GET", "models/2213.json", true);
-    req.send();
 }
 
 let hotspotCounter = 1;
@@ -303,16 +253,16 @@ function createHotspot(hotspot, slot) {
         minLabel.classList.replace("HotspotPrevLabel" , "HotspotMinLabel");
     }
 
+    close.appendChild(closeIcon);
+
     head.appendChild(label);
     head.appendChild(annotation);
-
-    close.appendChild(closeIcon);
+    head.appendChild(close);
 
     minimized.appendChild(minLabel);
     minimized.appendChild(prevAnnotation);
 
     expanded.appendChild(head);
-    expanded.appendChild(close)
     expanded.appendChild(body);
 
     newHotspot.appendChild(minimized);
@@ -331,17 +281,29 @@ function createHotspot(hotspot, slot) {
         minimized.style.display = "none";
         expanded.style.display = "block";
         mobileExpanded.style.display = "block";
+
+        // Apply indicator class to everything we want to hide when we are viewing a mobile hotspot
+        document.getElementById("buttonbox").classList.add("ViewingHotspot");
+        document.getElementById("infobox").classList.add("ViewingHotspot");
+        document.getElementById("logo").classList.add("ViewingHotspot");
+        document.getElementById("scrollBar").classList.add("ViewingHotspot");
     }
 
-    // Apply same close callback to both of our buttons, for the mobile AND desktop hotspot
+    // Same basic callback used in both desktop & mobile hotspots
     let closeCallback = function() {
         minimized.style.display = "block";
         expanded.style.display = "none";
         mobileExpanded.style.display = "none";
+
+        // Remove hotspot viewing indicator class
+        document.getElementById("buttonbox").classList.remove("ViewingHotspot");
+        document.getElementById("infobox").classList.remove("ViewingHotspot");
+        document.getElementById("logo").classList.remove("ViewingHotspot");
+        document.getElementById("scrollBar").classList.remove("ViewingHotspot");
     }
 
     close.onclick = closeCallback;
-    mobileExpanded.childNodes[2].onclick = closeCallback; // This feels sketchy but I cannot think of a better way right now
+    mobileExpanded.childNodes[0].childNodes[2].onclick = closeCallback;
 
     hotspotCounter++;
     return newHotspot

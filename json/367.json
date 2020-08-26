@@ -2,23 +2,25 @@
 	"title": "Some 3D Collection",
 	"desc": "This is a description of this particular collection of 3D objects.",
 	"viewer-settings": "some array of additional global model-viewer settings could go here (shadow intensity, autoplay, environment image, etc)",
+	"collectionId": 367,
 	"objects": [{
 			"id": 2213,
 			"poster": "models/2213.png",
 			"src": "models/2213.glb",
 			"ios": "models.2213.usdz",
 			"hotspots": [{
-					"label": "Something cool",
-					"position": "0.4007812111279194 m 0.5728657373429219 m 1.097146245737618 m ",
+					"label": "Ceramic Paint",
+					"position": "0.4007812111279194m 0.5728657373429219m 1.097146245737618m ",
 					"normal": "0.16744492173726025m 0.8337560844961998m 0.5261302022788354m",
-					"visibility": "visible"
+					"visibility": "visible",
+					"body": "test"
 				},
 				{
-					"label": "Something else cool",
+					"label": "Brown Corn",
 					"position": "-0.5732061558897641m 0.5330821278667062m 0.9063000376948391m",
 					"normal": "-0.9294973541164393m -0.05834724631259222m 0.364184386730508m",
-					"visibility": "visible"
-
+					"visibility": "visible",
+					"body": "test"
 				}
 			]
 		},

@@ -267,7 +267,8 @@ body {
 
 #viewer {
   width: 100%;
-  height: 100%;
+  height: 120%;
+  top: -20%;
   position: absolute;
 }
 
@@ -618,6 +619,14 @@ body {
   .HotspotMobile {
     visibility: hidden;
   }
+
+  .HotspotDesktop {
+    visibility: visible;
+  }
+
+  .ViewingHotspot {
+    visibility: visible;
+  }
 }
 
 /* Hide normal hotspot body when aspect ratio is less than 1 */
@@ -626,12 +635,35 @@ body {
     visibility: hidden;
   }
 
+  .HotspotMobile {
+    visibility: visible;
+  }
+
   .HotspotBody {
     height: inherit;
+    border-radius: 0;
+    opacity: 0.85;
   }
 
   .HotspotExpanded {
     transform: none;
+    border-radius: 0;
+    font-size: 1.5em;
+  }
+
+  .HotspotHead {
+    border-radius: 0;
+    opacity: 0.9;
+  }
+
+  .HotspotClose {
+    border-radius: 0;
+    height: inherit;
+    font-size: 1.5em;
+  }
+
+  .ViewingHotspot {
+    visibility: hidden;
   }
 
   #creditLine {
@@ -658,4 +690,22 @@ body {
 /* Override Materialize background color */
 button:focus {
   background-color: #96d607;
+}
+
+.modelButton {
+  transform: scale(1, 1.5);
+  /*color: #9e9e9e;*/
+  height: 10%;
+}
+
+#rightModelButton {
+  right: 2em;
+  position: absolute;
+  top: 50%;
+}
+
+#leftModelButton {
+  left: 2em;
+  position: absolute;
+  top: 50%;
 }
