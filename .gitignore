@@ -9,3 +9,10 @@ git
 
 # OSX generated files
 .DS_Store
+
+# Webstorm Files
+.idea/
+*.iml
+*.ipr
+*.iws
+*.ids
