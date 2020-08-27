@@ -33,8 +33,8 @@
 
 <body onload="main()" onkeydown="keydown(event)">
 <model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting" id="viewer" max-field-of-view="90deg" field-of-view="60deg" ar ar-scale="fixed">
-
-<div class="slider" id="scrollBar">
+  <button slot="ar-button" class="btn-floating waves-effect waves-light grey"><i class="fas fa-cube"></i></button>
+  <div class="slider" id="scrollBar">
   <div id="creditLine">Developed by Zeppelin Tech</div>
   <div id="scrollBarHider" onclick="hideModelScroll()">
     <i class="fa fa-angle-double-down fa-lg"
@@ -55,7 +55,6 @@
 <div id="buttonbox">
   <a class="btn-floating btn-large waves-effect waves-light" id="info"><i class="fas fa-info"></i></a>
   <a class="btn-floating waves-effect waves-light grey" id="presentationModeSwitcher" onclick="modelUpdater.togglePresentationMode()"><i class="fas fa-tv"></i></a>
-  <button slot="ar-button" class="btn-floating waves-effect waves-light grey"><i class="fas fa-cube"></i></button>
 </div>
 
 <div id="infobox">
