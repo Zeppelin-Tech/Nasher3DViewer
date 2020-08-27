@@ -7,7 +7,7 @@
 			"id": 2213,
 			"poster": "models/2213.png",
 			"src": "models/2213.glb",
-			"ios": "models.2213.usdz",
+			"ios": "models/2213.usdz",
 			"hotspots": [{
 					"label": "Ceramic Paint",
 					"position": "0.4007812111279194m 0.5728657373429219m 1.097146245737618m ",
@@ -28,7 +28,7 @@
 			"id": 9671,
 			"poster": "models/9671.png",
 			"src": "models/9671.glb",
-			"ios": "models.9671.usdz"
+			"ios": "models/9671.usdz"
 		}
 	]
 }
