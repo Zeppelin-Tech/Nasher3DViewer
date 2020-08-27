@@ -180,7 +180,7 @@ function initModelData(fileName) {
 function loadModelData() {
     let viewer = document.querySelector("model-viewer")
 	viewer.src = modelUpdater.modelData.objects[0].src;
-	viewer.iosSrc = modelUpdater.modelData.objects[0].ios;
+	viewer.setAttribute("ios-src", modelUpdater.modelData.objects[0].ios);
     modelUpdater.modelViewer = viewer;
     modelUpdater.drawHotspots(0);
     modelUpdater.drawScrollBar(0);
