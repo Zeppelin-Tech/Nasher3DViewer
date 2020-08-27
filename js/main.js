@@ -49,6 +49,7 @@ var modelUpdater = {
         this.currentIndex = index;
         let newModel = this.modelData.objects[index]
         this.modelViewer.src = newModel.src;
+        this.modelViewer.iosSrc = newModel.ios;
         const slides = document.querySelectorAll(".slide");
         slides.forEach((element) => { element.classList.remove("selected")});
         element.classList.add("selected");
