@@ -678,7 +678,7 @@ body {
   #scrollBarHider {
     height: 1em;
     width: 3em;
-    left: 47.5%;
+    left: 43%;
     position: relative;
     border-radius: 4px 4px 0px 0px;
     background-color: #dedede;
