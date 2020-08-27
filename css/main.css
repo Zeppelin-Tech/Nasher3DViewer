@@ -685,6 +685,10 @@ body {
     padding: 0.5em;
     opacity: 85%;
   }
+
+  .modelButton {
+    display: none;
+  }
 }
 
 /* Override Materialize background color */
