@@ -49,6 +49,7 @@ var modelUpdater = {
         this.currentIndex = index;
         let newModel = this.modelData.objects[index]
         this.modelViewer.src = newModel.src;
+        this.modelViewer.iosSrc = newModel.ios;
         const slides = document.querySelectorAll(".slide");
         slides.forEach((element) => { element.classList.remove("selected")});
         element.classList.add("selected");
@@ -180,7 +181,7 @@ function initModelData(fileName) {
 function loadModelData() {
     let viewer = document.querySelector("model-viewer")
 	viewer.src = modelUpdater.modelData.objects[0].src;
-	viewer.iosSrc = modelUpdater.modelData.objects[0].ios;
+	viewer.setAttribute("ios-src", modelUpdater.modelData.objects[0].ios);
     modelUpdater.modelViewer = viewer;
     modelUpdater.drawHotspots(0);
     modelUpdater.drawScrollBar(0);
