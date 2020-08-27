@@ -125,8 +125,6 @@ function main() {
 	}
 	initModelData(dataFile);
 
-
-
     // Set up info button press callback
     document.getElementById("info").onclick = pressedInfoDiv;
     document.getElementById("infoclose").onclick = closedInfo;
@@ -168,7 +166,7 @@ function parseUrlParams(url) {
 }
 
 function initModelData(fileName) {
-	let promise = fetch(`json/${fileName}.JSON`);
+	let promise = fetch(`json/${fileName}.json`);
 
 	promise.then(response => {
 			if (!response.ok) { initModelData(defaultCollection); }
@@ -183,7 +181,7 @@ function initModelData(fileName) {
 function loadModelData() {
     let viewer = document.querySelector("model-viewer")
 	viewer.src = modelUpdater.modelData.objects[0].src;
-	viewer.iosSrc = modelUpdater.modelData.objects[0].ios;
+	viewer.setAttribute("ios-src", modelUpdater.modelData.objects[0].ios);
     modelUpdater.modelViewer = viewer;
     modelUpdater.drawHotspots(0);
     modelUpdater.drawScrollBar(0);
