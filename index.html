@@ -33,9 +33,9 @@
 
 <body onload="main()" onkeydown="keydown(event)">
 <model-viewer src="models/2213.glb" camera-controls="" ar-status="not-presenting"
-              id="viewer" max-field-of-view="90deg" field-of-view="60deg" ar-scale="fixed"
+              id="viewer" max-field-of-view="90deg" field-of-view="60deg" ar ar-scale="fixed"
               ar-modes="webxr scene-viewer quick-look">
-
+  <button slot="ar-button" style="display: none"></button> <!-- Remove default AR button -->
   <div class="slider" id="scrollBar">
   <div id="creditLine">Developed by Zeppelin Tech</div>
   <div id="scrollBarHider" onclick="hideModelScroll()">
