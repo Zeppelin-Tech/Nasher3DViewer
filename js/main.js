@@ -111,6 +111,11 @@ var modelUpdater = {
 let scrollBarHidden = false;
 
 function main() {
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        document.getElementById("arButton").style.display = "block";
+    }
+
     // modify page based on URL parameters
     let urlParams = processUrl();
 
