@@ -714,3 +714,7 @@ button:focus {
   position: absolute;
   top: 50%;
 }
+
+#arButton {
+  display: none;
+}
