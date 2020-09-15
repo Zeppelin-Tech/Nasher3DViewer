@@ -6,7 +6,7 @@
 		"rotation-per-second": 0.098,
 		"shadow-intensity": 0,
 		"shadow-softness": 1,
-		"skybox-image": null
+		"skybox-image": "img/test.hdr"
 	},
 	"collectionId": 367,
 	"objects": [{
