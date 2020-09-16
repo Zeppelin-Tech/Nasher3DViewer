@@ -335,7 +335,7 @@ function hideModelScroll() {
     }
 
     animateCss(scrollBar, animation, "scrollbar__").then((message) => {
-        console.log(message);
+        //console.log(message);
         if (scrollBarHidden) {
             let modelBar = document.getElementById("models");
             modelBar.hidden = scrollBarHidden;
