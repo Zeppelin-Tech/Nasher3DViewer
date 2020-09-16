@@ -183,13 +183,34 @@ function initModelData(fileName) {
 		})
 }
 
+function loadViewerSettings() {
+    let settings = modelUpdater.modelData["viewer-settings"];
+    let viewer = document.querySelector("model-viewer");
+
+    if (settings["auto-rotate"] === true) {
+        viewer.setAttribute("auto-rotate", "");
+    }
+
+    if (settings["skybox-image"] !== null) {
+        viewer.setAttribute("skybox-image", settings["skybox-image"]);
+    }
+
+    viewer.setAttribute("rotation-per-second", settings["rotation-per-second"]);
+    viewer.setAttribute("shadow-intensity", settings["shadow-intensity"]);
+    viewer.setAttribute("shadow-softness", settings["shadow-softness"]);
+
+}
+
 function loadModelData() {
-    let viewer = document.querySelector("model-viewer")
+    loadViewerSettings();
+
+    let viewer = document.querySelector("model-viewer");
 	viewer.src = modelUpdater.modelData.objects[0].src;
 	viewer.setAttribute("ios-src", modelUpdater.modelData.objects[0].ios);
     modelUpdater.modelViewer = viewer;
     modelUpdater.drawHotspots(0);
     modelUpdater.drawScrollBar(0);
+
     loadObjectInfo(modelUpdater.modelData.objects[0].id);
 }
 

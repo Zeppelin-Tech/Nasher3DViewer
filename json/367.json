@@ -1,7 +1,13 @@
 {
 	"title": "Some 3D Collection",
 	"desc": "This is a description of this particular collection of 3D objects.",
-	"viewer-settings": "some array of additional global model-viewer settings could go here (shadow intensity, autoplay, environment image, etc)",
+	"viewer-settings": {
+		"auto-rotate": false,
+		"rotation-per-second": 0.098,
+		"shadow-intensity": 0,
+		"shadow-softness": 1,
+		"skybox-image": "img/test.hdr"
+	},
 	"collectionId": 367,
 	"objects": [{
 			"id": 2213,
@@ -13,14 +19,14 @@
 					"position": "0.4007812111279194m 0.5728657373429219m 1.097146245737618m ",
 					"normal": "0.16744492173726025m 0.8337560844961998m 0.5261302022788354m",
 					"visibility": "visible",
-					"body": "test"
+					"body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
 				},
 				{
 					"label": "Brown Corn",
 					"position": "-0.5732061558897641m 0.5330821278667062m 0.9063000376948391m",
 					"normal": "-0.9294973541164393m -0.05834724631259222m 0.364184386730508m",
 					"visibility": "visible",
-					"body": "test"
+					"body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
 				}
 			]
 		},
