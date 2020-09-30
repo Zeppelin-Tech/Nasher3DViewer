@@ -305,6 +305,16 @@ function createHotspot(hotspot, slot) {
     document.body.appendChild(mobileExpanded);
 
     minimized.onclick = function () {
+
+        if (!modelUpdater.modelData["multi-hotspot-viewing"]) {
+            console.log("Only one at a time");
+            let allExpandedHotspots = document.getElementsByClassName("HotspotExpanded");
+            Array.from(allExpandedHotspots).forEach(element => element.style.display = "none");
+
+            let allMinimizedHotspots = document.getElementsByClassName("HotspotMinimized");
+            Array.from(allMinimizedHotspots).forEach(element => element.style.display = "block");
+        }
+
         minimized.style.display = "none";
         expanded.style.display = "block";
         mobileExpanded.style.display = "block";

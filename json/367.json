@@ -1,12 +1,13 @@
 {
 	"title": "Some 3D Collection",
 	"desc": "This is a description of this particular collection of 3D objects.",
+	"multi-hotspot-viewing": false,
 	"viewer-settings": {
 		"auto-rotate": false,
 		"rotation-per-second": 0.098,
 		"shadow-intensity": 0,
 		"shadow-softness": 1,
-		"skybox-image": null
+		"skybox-image": "img/test.hdr"
 	},
 	"collectionId": 367,
 	"objects": [{
