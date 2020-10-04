@@ -228,6 +228,9 @@ function closedInfo() {
 }
 
 let hotspotCounter = 1;
+let expQueue = []; // store all expanded hotspots in the order that they were added
+let minQueue = []; // ...and store corresponding minimized labels for swapping on expanded close
+
 function createHotspot(hotspot, slot) {
     let newHotspot = document.createElement("div");
 
@@ -306,13 +309,11 @@ function createHotspot(hotspot, slot) {
 
     minimized.onclick = function () {
 
-        if (!modelUpdater.modelData["multi-hotspot-viewing"]) {
-            console.log("Only one at a time");
-            let allExpandedHotspots = document.getElementsByClassName("HotspotExpanded");
-            Array.from(allExpandedHotspots).forEach(element => element.style.display = "none");
-
-            let allMinimizedHotspots = document.getElementsByClassName("HotspotMinimized");
-            Array.from(allMinimizedHotspots).forEach(element => element.style.display = "block");
+        expQueue.push(expanded);
+        minQueue.push(minimized);
+        if (expQueue.length > modelUpdater.modelData["max-open-hotspots"]) {
+            expQueue.shift().style.display = "none";
+            minQueue.shift().style.display = "block";
         }
 
         minimized.style.display = "none";
@@ -328,6 +329,15 @@ function createHotspot(hotspot, slot) {
 
     // Same basic callback used in both desktop & mobile hotspots
     let closeCallback = function() {
+
+        // remove element from expanded queue
+        for (let i = 0; i < expQueue.length; i++) {
+            if (expQueue[i] === expanded) {
+                expQueue.splice(i, 1);
+                minQueue.splice(i, 1);
+            }
+        }
+
         minimized.style.display = "block";
         expanded.style.display = "none";
         mobileExpanded.style.display = "none";
