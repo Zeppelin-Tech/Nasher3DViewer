@@ -462,6 +462,7 @@ body {
 
 
 .HotspotMinimized {
+  pointer-events: auto;
   padding: 0;
   height: 2.5em;
   width: 2.5em;
@@ -501,6 +502,7 @@ body {
 }
 
 .HotspotPreview {
+  pointer-events: auto;
   transform: translate(-0.938em,-0.938em);
   position: absolute;
   padding: 0;
@@ -522,6 +524,7 @@ body {
 }
 
 .HotspotExpanded {
+  pointer-events: auto;
   transform: translate(5.313em, 5.313em);
   display: none;
   height: 12.500em;
@@ -770,4 +773,8 @@ button:focus {
 
 .pace.pace-inactive {
   display: none;
+}
+
+.Hotspot {
+  pointer-events: none;
 }
