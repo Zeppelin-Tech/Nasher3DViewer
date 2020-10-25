@@ -1,0 +1,130 @@
+/* Hotspot styling */
+
+.Hotspot {
+    pointer-events: none;
+}
+
+.HotspotMinimized {
+    pointer-events: auto;
+    padding: 0;
+    height: 2.5em;
+    width: 2.5em;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: #999999;
+}
+
+.HotspotMinLabel {
+    position: absolute;
+    top: 0.75em;
+    left: .95em;
+    font-weight: bold;
+    text-shadow: 1px 1px #000000;
+}
+
+.HotspotPrevLabel {
+    font-weight: bold;
+    top: 0.438em;
+    left: 0.625em;
+    float: left;
+    position: absolute;
+    text-shadow: 1px 1px #000000;
+}
+
+
+.HotspotPrevAnnotation {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    float: left;
+    margin-left: 1.75em;
+    display: inline-block;
+}
+
+.HotspotPreview {
+    pointer-events: auto;
+    transform: translate(-0.938em,-0.938em);
+    position: absolute;
+    padding: 0;
+    transition: width .4s;
+    color: white;
+    border: none;
+    height: 2em;
+    width: 12.500em;
+    background-color: #999999;
+    border-radius: 0.375em;
+    cursor: pointer;
+}
+
+.HotspotPreview:hover .HotspotPrevAnnotation {
+    height: auto;
+    width: auto;
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+.HotspotExpanded {
+    pointer-events: auto;
+    transform: translate(5.313em, 5.313em);
+    display: none;
+    height: 12.500em;
+    width: 12.500em;
+    border-radius: 0.375em;
+    color: white;
+}
+
+.HotspotHead {
+    transition: width 2s;
+    color: white;
+    border: none;
+    height: 2em;
+    width: 100%;
+    background-color: #999999;
+    border-top-left-radius: 0.375em;
+    border-top-right-radius: 0.375em;
+}
+
+.HotspotClose {
+    cursor: pointer;
+    color: white;
+    font-size: 22px;
+    padding: 0;
+    height: 1.455em;
+    width: 1.455em;
+    background-color: #96d607;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 0.29em;
+}
+
+.HotspotLabel {
+    font-weight: bold;
+    top: 0.313em;
+    left: 0.625em;
+    float: left;
+    position: absolute;
+    text-shadow: 1px 1px #000000;
+}
+
+.HotspotAnnotation {
+    float: left;
+    margin-top: 0.313em;
+    margin-left: 1.75em;
+    margin-bottom: 0.125em;
+    display: inline-block;
+}
+
+.HotspotBody {
+    background-color: #696668;
+    padding: 0.625em;
+    height: 9.000em;
+    overflow: scroll;
+    overflow-x: hidden;
+    border-bottom-right-radius: 0.375em;
+    border-bottom-left-radius: 0.375em;
+}
