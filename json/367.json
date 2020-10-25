@@ -1,12 +1,13 @@
 {
 	"title": "Some 3D Collection",
 	"desc": "This is a description of this particular collection of 3D objects.",
+	"max-open-hotspots": 2,
 	"viewer-settings": {
 		"auto-rotate": false,
 		"rotation-per-second": 0.098,
 		"shadow-intensity": 0,
-		"shadow-softness": 1,
-		"skybox-image": null
+		"shadow-softness": 2,
+		"skybox-image": "img/test.hdr"
 	},
 	"collectionId": 367,
 	"objects": [{
@@ -18,6 +19,13 @@
 					"label": "Ceramic Paint",
 					"position": "0.4007812111279194m 0.5728657373429219m 1.097146245737618m ",
 					"normal": "0.16744492173726025m 0.8337560844961998m 0.5261302022788354m",
+					"visibility": "visible",
+					"body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+				},
+				{
+					"label": "Spout",
+					"position": "0.2326758852811754m 0.987246826841067m 0.7821275433518489m",
+					"normal": "0.19199150469095852m -0.07481940478195975m 0.9785404022290418m",
 					"visibility": "visible",
 					"body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
 				},
