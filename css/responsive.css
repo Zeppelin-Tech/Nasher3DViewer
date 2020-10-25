@@ -1,13 +1,6 @@
 /* Alternate styling for different devices */
 
 /* Different logo sizes at different screen widths */
-#logo {
-    position: absolute;
-    margin: .5em .5em;
-}
-
-
-
 @media screen and (max-width: 30em) {
     #logo {
         width: 10em;
@@ -42,7 +35,7 @@
     }
 }
 
-/* Hide normal hotspot body when aspect ratio is less than 1 */
+/* Mobile styling when aspect ratio is less than 1 */
 @media screen and (max-aspect-ratio: 1 / 1) {
     #infobox {
         width: 100%;
