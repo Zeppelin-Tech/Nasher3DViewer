@@ -131,8 +131,8 @@ function main() {
 	initModelData(dataFile);
 
     // Set up info button press callback
-    document.getElementById("info").onclick = openedInfo;
-    document.getElementById("infoclose").onclick = closedInfo;
+    document.getElementById("info").onclick = openInfo;
+    document.getElementById("infoclose").onclick = closeInfo;
 
     // Load the information for first object
 }
@@ -226,16 +226,16 @@ function loadViewerSettings() {
 
 }
 
-// openedInfo() opens the info box with an animation
-function openedInfo() {
+// openInfo() opens the info box with an animation
+function openInfo() {
     let box = document.getElementById("infobox");
     box.style.display = "block";
     box.classList.remove('animate__animated', 'animate__slideOutRight')
     box.classList.add('animate__animated', 'animate__slideInRight');
 }
 
-// closedInfo() closes the info box with an animation
-function closedInfo() {
+// closeInfo() closes the info box with an animation
+function closeInfo() {
     let box = document.getElementById("infobox");
     box.classList.remove('animate__animated', 'animate__slideInRight')
     box.classList.add('animate__animated', 'animate__slideOutRight');
