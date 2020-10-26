@@ -34,7 +34,6 @@ var modelUpdater = {
             }
         }
 
-        // TODO: Fix this whole numbering hotspots thing
         hotspotCounter = 1;
     },
     drawHotspots: function (index) {
@@ -112,6 +111,7 @@ let scrollBarHidden = false;
 
 function main() {
 
+    // display AR button only on supported devices
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         document.getElementById("arButton").style.display = "block";
     }
@@ -119,11 +119,13 @@ function main() {
     // modify page based on URL parameters
     let urlParams = processUrl();
 
+    // don't need to show Nasher logo if embedded
     if (urlParams.has('embedded')) {
         let logo = document.getElementById("logo");
         logo.style.display = "none";
     }
 
+    // load different collections based on parameters
 	let dataFile = defaultCollection
 	if (urlParams.has('collection')) {
 		dataFile = urlParams.get('collection');
@@ -134,7 +136,6 @@ function main() {
     document.getElementById("info").onclick = openInfo;
     document.getElementById("infoclose").onclick = closeInfo;
 
-    // Load the information for first object
 }
 
 function processUrl() {
@@ -245,6 +246,7 @@ let hotspotCounter = 1;
 let expQueue = []; // store all expanded hotspots in the order that they were added
 let minQueue = []; // ...and store corresponding minimized labels for swapping on expanded close
 
+// Initialize hotspots with content and styling
 function createHotspot(hotspot, slot) {
     let newHotspot = document.createElement("div");
 
@@ -252,20 +254,20 @@ function createHotspot(hotspot, slot) {
     newHotspot.setAttribute("slot", slot);
     newHotspot.setAttribute("data-position", hotspot.position);
     newHotspot.setAttribute("data-visibility-attribute", hotspot.visibility);
-    // newHotspot.setAttribute("visible", true)
 
     let minimized = document.createElement("button")
     let expanded = document.createElement("div")
 
-    let head = document.createElement("div");
-    let body = document.createElement("div");
-    let label = document.createElement("div");
-    let annotation = document.createElement("div");
-    let minLabel = document.createElement("div");
-    let prevAnnotation = document.createElement("div");
-    let close = document.createElement("button");
-    let closeIcon = document.createElement("i");
+    let head = document.createElement("div");               // contains number, title, close btn
+    let body = document.createElement("div");               // content
+    let label = document.createElement("div");              // number
+    let annotation = document.createElement("div");         // title
+    let minLabel = document.createElement("div");           // number (when minimized)
+    let prevAnnotation = document.createElement("div");     // title (when moused over)
+    let close = document.createElement("button");           // Button to close expanded
+    let closeIcon = document.createElement("i");            // FontAwesome Icon for button
 
+    // apply styling classes
     minimized.setAttribute("class", "HotspotMinimized pulse");
     expanded.setAttribute("class", "HotspotExpanded");
     head.setAttribute("class", "HotspotHead");
@@ -279,24 +281,28 @@ function createHotspot(hotspot, slot) {
     close.setAttribute("class", "HotspotClose");
     closeIcon.setAttribute("class", "HotspotCloseIcon fas fa-times");
 
+    // initialize elements with content
     body.innerText = hotspot.body;
     label.innerText = hotspotCounter.toString();
     minLabel.innerText = hotspotCounter.toString();
     annotation.innerText = hotspot.label;
     prevAnnotation.innerText = hotspot.label;
 
+    // expand horizontally on mouse over to display title
     minimized.onmouseover = function () {
         minimized.classList.remove("pulse");
         minimized.classList.replace("HotspotMinimized", "HotspotPreview");
         minLabel.classList.replace("HotspotMinLabel" , "HotspotPrevLabel");
     }
 
+    // retract when mouse exits
     minimized.onmouseout = function () {
         minimized.classList.add("pulse");
         minimized.classList.replace("HotspotPreview", "HotspotMinimized");
         minLabel.classList.replace("HotspotPrevLabel" , "HotspotMinLabel");
     }
 
+    // build hierarchy of elements
     close.appendChild(closeIcon);
 
     head.appendChild(label);
@@ -323,6 +329,7 @@ function createHotspot(hotspot, slot) {
 
     minimized.onclick = function () {
 
+        // If total hotspots open exceeds maximum, close least recently used
         expQueue.push(expanded);
         minQueue.push(minimized);
         if (expQueue.length > modelUpdater.modelData["max-open-hotspots"]) {
@@ -330,6 +337,7 @@ function createHotspot(hotspot, slot) {
             minQueue.shift().style.display = "block";
         }
 
+        // switch to show expanded hotspot
         minimized.style.display = "none";
         expanded.style.display = "block";
         mobileExpanded.style.display = "block";
@@ -352,6 +360,7 @@ function createHotspot(hotspot, slot) {
             }
         }
 
+        // switch to show minimized hotspot
         minimized.style.display = "block";
         expanded.style.display = "none";
         mobileExpanded.style.display = "none";
@@ -366,7 +375,7 @@ function createHotspot(hotspot, slot) {
     close.onclick = closeCallback;
     mobileExpanded.childNodes[0].childNodes[2].onclick = closeCallback;
 
-    hotspotCounter++;
+    hotspotCounter++;   // New hotspot creation complete, increment counter
     return newHotspot
 }
 
