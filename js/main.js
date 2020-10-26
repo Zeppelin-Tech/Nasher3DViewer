@@ -20,11 +20,13 @@ function keydown(e) {
 	}
 }
 
+// model updater global
 var modelUpdater = {
     modelViewer: 0,
     modelData: {}, 
     currentIndex: 0,
     presentationMode: false,
+
     deleteHotspots: function () {
         for (let i = 0; i < this.modelViewer.children.length; i++) {
             const child = this.modelViewer.children[i]
@@ -37,6 +39,7 @@ var modelUpdater = {
         // TODO: Fix this whole numbering hotspots thing
         hotspotCounter = 1;
     },
+
     drawHotspots: function (index) {
         let newModel = this.modelData.objects[index];
         if (newModel.hasOwnProperty('hotspots')) {
@@ -45,6 +48,7 @@ var modelUpdater = {
             }
         }
     },
+
     updateModel: function(element, index) {
         this.currentIndex = index;
         let newModel = this.modelData.objects[index]
@@ -62,6 +66,7 @@ var modelUpdater = {
         // Load info for new model
         loadObjectInfo(newModel.id);
     },
+
     togglePresentationMode: function() {
         if (this.presentationMode) {
             this.drawHotspots(this.currentIndex)
@@ -71,12 +76,14 @@ var modelUpdater = {
         this.presentationMode = true;
         this.deleteHotspots();
     },
+
     drawScrollBar: function(selectedIndex) {
         let slides = document.getElementById("models")
         for (let i = 0; i < this.modelData.objects.length; i++) {
             slides.appendChild(this.createSlide(i === selectedIndex, i))
         }
     },
+
     createSlide: function(selected, index) {
         let newSlide = document.createElement("button");
 
@@ -86,6 +93,7 @@ var modelUpdater = {
 
         return newSlide;
     },
+
 	rightModelPressed: function() {
 		if (this.currentIndex < this.modelData.objects.length - 1) {
 			this.currentIndex++;
@@ -96,6 +104,7 @@ var modelUpdater = {
         let slides = document.getElementsByClassName("slide");
         this.updateModel(slides[this.currentIndex], this.currentIndex)
 	},
+
 	leftModelPressed: function() {
 		if (this.currentIndex > 0) {
 			this.currentIndex--;
@@ -107,6 +116,7 @@ var modelUpdater = {
         this.updateModel(slides[this.currentIndex], this.currentIndex)
 	}
 }
+
 
 let scrollBarHidden = false;
 
@@ -133,8 +143,6 @@ function main() {
     // Set up info button press callback
     document.getElementById("info").onclick = pressedInfoDiv;
     document.getElementById("infoclose").onclick = closedInfo;
-
-    // Load the information for first object
 }
 
 function processUrl() {
@@ -145,11 +153,15 @@ function processUrl() {
 }
 
 function parseUrlParams(url) {
+	// removing predicating ?
 	if (url.charAt(0) == '?') {
 		url = url.substring(1);
 	}
+	
+	// split the params
 	url = url.split('&');
 
+	// define has and get methods
 	let params = {
 		has: function(property) {
 			return this.hasOwnProperty(property);
@@ -158,6 +170,8 @@ function parseUrlParams(url) {
 			return this[property];
 		}
 	};
+
+	// add in params
 	for (let i = 0; i < url.length; i++) {
 		let vals = url[i].split('=');
 		if (vals.length == 1) {
@@ -174,9 +188,12 @@ function initModelData(fileName) {
 	let promise = fetch(`json/${fileName}.json`);
 
 	promise.then(response => {
+			// invalid json file
 			if (!response.ok) { initModelData(defaultCollection); }
+			// valid
 			else { return response.json(); }
 		})
+		// init modelUpdater global
 		.then(data => {
 			modelUpdater.modelData = data;
 			loadModelData();
@@ -356,6 +373,7 @@ function createHotspot(hotspot, slot) {
     return newHotspot
 }
 
+// hide scrollbar
 function hideModelScroll() {
     scrollBarHidden = !scrollBarHidden;
 
@@ -375,8 +393,8 @@ function hideModelScroll() {
         scrollBar.style.bottom = "0";
     }
 
+	// play animation
     animateCss(scrollBar, animation, "scrollbar__").then((message) => {
-        //console.log(message);
         if (scrollBarHidden) {
             let modelBar = document.getElementById("models");
             modelBar.hidden = scrollBarHidden;
