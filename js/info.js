@@ -1,5 +1,7 @@
 // Define which data from the object JSON to display and which icon shall accompany it
 const infoTypes = ["title", "labelText", "people", "classification", "medium", "creditline", "invno", "dimensions"];
+
+// Map from the tags in the Nasher's JSON files for the models to displayed line on collapsible heading
 const infoNames = new Map([
    ["labelText", "Label"],
    ["classification", "Classification"],
@@ -8,6 +10,8 @@ const infoNames = new Map([
    ["invno", "Object Number"],
    ["dimensions", "Dimensions"]
 ]);
+
+// Map from tag to icon name
 const infoIcons = new Map([
     ["title", "tag"],
     ["labelText", "scroll"],
@@ -18,11 +22,13 @@ const infoIcons = new Map([
     ["invno", "archive"]
 ]);
 
+// initMaterializeCollapsibles() sets up all materialize collapsibles on the page
 function initMaterializeCollapsibles() {
     let collapsibleElems = document.querySelectorAll('.collapsible');
     M.Collapsible.init(collapsibleElems, null);
 }
 
+// createHeaderWithIcon() creates a collapsible header with a given icon
 function createHeaderWithIcon(iconName) {
     let header = document.createElement("div");
     header.classList.add("collapsible-header");
@@ -37,6 +43,7 @@ function createHeaderWithIcon(iconName) {
 }
 
 // TODO; Eventually, we will have to load data for the object we are viewing, but for now we cannot request that from the browser.
+// loadObjectInfo() loads the info for an object with a given ID asynchronously
 function loadObjectInfo(id) {
     // Fetch JSON data for object
     let promise = fetch(`models/${id}.json`);
@@ -55,13 +62,16 @@ function loadObjectInfo(id) {
             // Require special handling for title & author because of how they are shown together
             let title = "Unknown";
             let author = "Unknown";
-            for (let type of infoTypes) {
 
+            // Loop over every type that we can display
+            for (let type of infoTypes) {
+                // Special handling (as aforementioned) for title and author, otherwise treat normally.
                 if (type === "title" && obj.hasOwnProperty("title")) {
                     title = obj[type].value;
                 } else if (type === "people" && obj.hasOwnProperty("people")) {
                     author = obj[type].value;
-                } else if (obj.hasOwnProperty(type)) {
+                } else if (obj.hasOwnProperty(type)) { // Displayable type has info
+                    // Create HTML for this section
                     let li = document.createElement("li");
 
                     let header = createHeaderWithIcon(infoIcons.get(type));

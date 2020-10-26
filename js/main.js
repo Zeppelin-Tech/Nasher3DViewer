@@ -131,7 +131,7 @@ function main() {
 	initModelData(dataFile);
 
     // Set up info button press callback
-    document.getElementById("info").onclick = pressedInfoDiv;
+    document.getElementById("info").onclick = openedInfo;
     document.getElementById("infoclose").onclick = closedInfo;
 
     // Load the information for first object
@@ -170,6 +170,7 @@ function parseUrlParams(url) {
 	return params;
 }
 
+// initModelData() asynchronously fetches the model data and loads it
 function initModelData(fileName) {
 	let promise = fetch(`json/${fileName}.json`);
 
@@ -183,44 +184,57 @@ function initModelData(fileName) {
 		})
 }
 
+// loadModelData() loads the model data for settings & the info box
+function loadModelData() {
+    // Load in settings
+    loadViewerSettings();
+
+    // Set models for model viewer to use
+    let viewer = document.querySelector("model-viewer");
+    viewer.src = modelUpdater.modelData.objects[0].src;
+    viewer.setAttribute("ios-src", modelUpdater.modelData.objects[0].ios);
+
+    // Set up model hotspots & scrollbar
+    modelUpdater.modelViewer = viewer;
+    modelUpdater.drawHotspots(0);
+    modelUpdater.drawScrollBar(0);
+
+    // Load the object's info
+    loadObjectInfo(modelUpdater.modelData.objects[0].id);
+}
+
+// loadViewerSettings() applies the model's settings
 function loadViewerSettings() {
+    // Get settings & viewer
     let settings = modelUpdater.modelData["viewer-settings"];
     let viewer = document.querySelector("model-viewer");
 
+    // Apply auto-rotate setting
     if (settings["auto-rotate"] === true) {
         viewer.setAttribute("auto-rotate", "");
     }
 
+    // Apply skybox image
     if (settings["skybox-image"] !== null) {
         viewer.setAttribute("skybox-image", settings["skybox-image"]);
     }
 
+    // Apply rotation & shadow intensity / softness
     viewer.setAttribute("rotation-per-second", settings["rotation-per-second"]);
     viewer.setAttribute("shadow-intensity", settings["shadow-intensity"]);
     viewer.setAttribute("shadow-softness", settings["shadow-softness"]);
 
 }
 
-function loadModelData() {
-    loadViewerSettings();
-
-    let viewer = document.querySelector("model-viewer");
-	viewer.src = modelUpdater.modelData.objects[0].src;
-	viewer.setAttribute("ios-src", modelUpdater.modelData.objects[0].ios);
-    modelUpdater.modelViewer = viewer;
-    modelUpdater.drawHotspots(0);
-    modelUpdater.drawScrollBar(0);
-
-    loadObjectInfo(modelUpdater.modelData.objects[0].id);
-}
-
-function pressedInfoDiv() {
+// openedInfo() opens the info box with an animation
+function openedInfo() {
     let box = document.getElementById("infobox");
     box.style.display = "block";
     box.classList.remove('animate__animated', 'animate__slideOutRight')
     box.classList.add('animate__animated', 'animate__slideInRight');
 }
 
+// closedInfo() closes the info box with an animation
 function closedInfo() {
     let box = document.getElementById("infobox");
     box.classList.remove('animate__animated', 'animate__slideInRight')
