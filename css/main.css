@@ -1,15 +1,4 @@
-/*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
-
-/* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
+/* General styling */
 
 html {
   color: #222;
@@ -18,13 +7,7 @@ html {
 }
 
 /*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Vendor-prefixed and regular ::selection selectors cannot be combined:
- * https://stackoverflow.com/a/16982510/7133471
- *
- * Customize the background color to match your design.
+ * Remove text-shadow in selection highlight
  */
 
 ::-moz-selection {
@@ -52,8 +35,7 @@ hr {
 
 /*
  * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
+ * images, videos and the bottom of their containers
  */
 
 audio,
@@ -83,14 +65,6 @@ textarea {
   resize: vertical;
 }
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
 /*
  * Hide visually and from screen readers
  */
@@ -101,12 +75,7 @@ textarea {
 }
 
 /*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ * Hide only visually, but have it available for screen readers
  */
 
 .sr-only {
@@ -124,8 +93,7 @@ textarea {
 
 /*
  * Extends the .sr-only class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
+ * to be focusable when navigated to via the keyboard
  */
 
 .sr-only.focusable:active,
@@ -169,100 +137,13 @@ textarea {
   clear: both;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
-@media print {
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  /*
-   * Printing Tables:
-   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
-   */
-  thead {
-    display: table-header-group;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
-}
-
 body {
   overflow: hidden;
+}
+
+#logo {
+  position: absolute;
+  margin: .5em .5em;
 }
 
 #viewer {
@@ -270,32 +151,6 @@ body {
   height: 120%;
   top: -20%;
   position: absolute;
-}
-
-/* Different logo sizes at different screen widths */
-#logo {
-  position: absolute;
-  margin: .5em .5em;
-}
-
-
-
-@media screen and (max-width: 30em) {
-  #logo {
-    width: 10em;
-  }
-}
-
-@media screen and (min-width: 30em) and (max-width: 45em) {
-  #logo {
-    width: 15em;
-  }
-}
-
-@media screen and (min-width: 45em) {
-  #logo {
-    width: 20em;
-  }
 }
 
 #buttonbox {
@@ -328,42 +183,6 @@ body {
   display: table;
   font-size: .9em;
   color: gray;
-}
-
-/* Infobox styling for phones */
-@media screen and (max-aspect-ratio: 1 / 1){
-  #infobox {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-  }
-}
-
-/* Different logo sizes at different screen widths */
-#logo {
-  position: absolute;
-  margin: .5em .5em;
-}
-
-
-
-@media screen and (max-width: 30em) {
-  #logo {
-    width: 10em;
-  }
-}
-
-
-@media screen and (min-width: 30em) and (max-width: 45em) {
-  #logo {
-    width: 15em;
-  }
-}
-
-@media screen and (min-width: 45em) {
-  #logo {
-    width: 20em;
-  }
 }
 
 #infoclose {
@@ -460,132 +279,6 @@ body {
   font-size: 1.25em;
 }
 
-
-.HotspotMinimized {
-  pointer-events: auto;
-  padding: 0;
-  height: 2.5em;
-  width: 2.5em;
-  border-radius: 50%;
-  border: none;
-  color: white;
-  font-weight: bold;
-  background-color: #999999;
-}
-
-.HotspotMinLabel {
-  position: absolute;
-  top: 0.75em;
-  left: .95em;
-  font-weight: bold;
-  text-shadow: 1px 1px #000000;
-}
-
-.HotspotPrevLabel {
-  font-weight: bold;
-  top: 0.438em;
-  left: 0.625em;
-  float: left;
-  position: absolute;
-  text-shadow: 1px 1px #000000;
-}
-
-
-.HotspotPrevAnnotation {
-  opacity: 0;
-  height: 0;
-  width: 0;
-  overflow: hidden;
-  float: left;
-  margin-left: 1.75em;
-  display: inline-block;
-}
-
-.HotspotPreview {
-  pointer-events: auto;
-  transform: translate(-0.938em,-0.938em);
-  position: absolute;
-  padding: 0;
-  transition: width .4s;
-  color: white;
-  border: none;
-  height: 2em;
-  width: 12.500em;
-  background-color: #999999;
-  border-radius: 0.375em;
-  cursor: pointer;
-}
-
-.HotspotPreview:hover .HotspotPrevAnnotation {
-  height: auto;
-  width: auto;
-  transition: opacity 1s;
-  opacity: 1;
-}
-
-.HotspotExpanded {
-  pointer-events: auto;
-  transform: translate(5.313em, 5.313em);
-  display: none;
-  height: 12.500em;
-  width: 12.500em;
-  border-radius: 0.375em;
-  color: white;
-}
-
-.HotspotHead {
-  transition: width 2s;
-  color: white;
-  border: none;
-  height: 2em;
-  width: 100%;
-  background-color: #999999;
-  border-top-left-radius: 0.375em;
-  border-top-right-radius: 0.375em;
-}
-
-.HotspotClose {
-  cursor: pointer;
-  color: white;
-  font-size: 22px;
-  padding: 0;
-  height: 1.455em;
-  width: 1.455em;
-  background-color: #96d607;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-top-right-radius: 0.29em;
-}
-
-.HotspotLabel {
-  font-weight: bold;
-  top: 0.313em;
-  left: 0.625em;
-  float: left;
-  position: absolute;
-  text-shadow: 1px 1px #000000;
-}
-
-.HotspotAnnotation {
-  float: left;
-  margin-top: 0.313em;
-  margin-left: 1.75em;
-  margin-bottom: 0.125em;
-  display: inline-block;
-}
-
-.HotspotBody {
-  background-color: #696668;
-  padding: 0.625em;
-  height: 9.000em;
-  overflow: scroll;
-  overflow-x: hidden;
-  border-bottom-right-radius: 0.375em;
-  border-bottom-left-radius: 0.375em;
-}
-
 @keyframes scrollbar__slideInUp {
 	from { bottom: -10em; }
 	to { bottom: 0; }
@@ -615,83 +308,6 @@ body {
   width: 100%;
   height: 100%;
   z-index: 11;
-}
-
-/* Hide mobile-style hotspots when aspect ratio is greater than 1 */
-@media screen and (min-aspect-ratio: 1 / 1) {
-  .HotspotMobile {
-    visibility: hidden;
-  }
-
-  .HotspotDesktop {
-    visibility: visible;
-  }
-
-  .ViewingHotspot {
-    visibility: visible;
-  }
-}
-
-/* Hide normal hotspot body when aspect ratio is less than 1 */
-@media screen and (max-aspect-ratio: 1 / 1) {
-  .HotspotDesktop {
-    visibility: hidden;
-  }
-
-  .HotspotMobile {
-    visibility: visible;
-  }
-
-  .HotspotBody {
-    height: inherit;
-    border-radius: 0;
-    opacity: 0.85;
-  }
-
-  .HotspotExpanded {
-    transform: none;
-    border-radius: 0;
-    font-size: 1.5em;
-  }
-
-  .HotspotHead {
-    border-radius: 0;
-    opacity: 0.9;
-  }
-
-  .HotspotClose {
-    border-radius: 0;
-    height: inherit;
-    font-size: 1.5em;
-  }
-
-  .ViewingHotspot {
-    visibility: hidden;
-  }
-
-  #creditLine {
-    float: left;
-    position: absolute;
-    top: 2em;
-    left: 1em;
-    font-size: 8px;
-    color: #999999;
-  }
-
-  #scrollBarHider {
-    height: 1em;
-    width: 3em;
-    left: 43%;
-    position: relative;
-    border-radius: 4px 4px 0px 0px;
-    background-color: #dedede;
-    padding: 0.5em;
-    opacity: 85%;
-  }
-
-  .modelButton {
-    display: none;
-  }
 }
 
 /* Override Materialize background color */
@@ -773,8 +389,4 @@ button:focus {
 
 .pace.pace-inactive {
   display: none;
-}
-
-.Hotspot {
-  pointer-events: none;
 }

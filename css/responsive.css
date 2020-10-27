@@ -1,0 +1,186 @@
+/* Alternate styling for different devices */
+
+/* Different logo sizes at different screen widths */
+@media screen and (max-width: 30em) {
+    #logo {
+        width: 10em;
+    }
+}
+
+
+@media screen and (min-width: 30em) and (max-width: 45em) {
+    #logo {
+        width: 15em;
+    }
+}
+
+@media screen and (min-width: 45em) {
+    #logo {
+        width: 20em;
+    }
+}
+
+/* Hide mobile-style hotspots when aspect ratio is greater than 1 */
+@media screen and (min-aspect-ratio: 1 / 1) {
+    .HotspotMobile {
+        visibility: hidden;
+    }
+
+    .HotspotDesktop {
+        visibility: visible;
+    }
+
+    .ViewingHotspot {
+        visibility: visible;
+    }
+}
+
+/* Mobile styling when aspect ratio is less than 1 */
+@media screen and (max-aspect-ratio: 1 / 1) {
+    #infobox {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+    }
+
+    .HotspotDesktop {
+        visibility: hidden;
+    }
+
+    .HotspotMobile {
+        visibility: visible;
+    }
+
+    .HotspotBody {
+        height: inherit;
+        border-radius: 0;
+        opacity: 0.85;
+    }
+
+    .HotspotExpanded {
+        transform: none;
+        border-radius: 0;
+        font-size: 1.5em;
+    }
+
+    .HotspotHead {
+        border-radius: 0;
+        opacity: 0.9;
+    }
+
+    .HotspotClose {
+        border-radius: 0;
+        height: inherit;
+        font-size: 1.5em;
+    }
+
+    .ViewingHotspot {
+        visibility: hidden;
+    }
+
+    #creditLine {
+        float: left;
+        position: absolute;
+        top: 2em;
+        left: 1em;
+        font-size: 8px;
+        color: #999999;
+    }
+
+    #scrollBarHider {
+        height: 1em;
+        width: 3em;
+        left: 43%;
+        position: relative;
+        border-radius: 4px 4px 0px 0px;
+        background-color: #dedede;
+        padding: 0.5em;
+        opacity: 85%;
+    }
+
+    .modelButton {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print,
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+@media print {
+    *,
+    *::before,
+    *::after {
+        background: #fff !important;
+        color: #000 !important;
+        /* Black prints faster */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]::after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+    a[href^="#"]::after,
+    a[href^="javascript:"]::after {
+        content: "";
+    }
+
+    pre {
+        white-space: pre-wrap !important;
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

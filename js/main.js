@@ -36,7 +36,6 @@ var modelUpdater = {
             }
         }
 
-        // TODO: Fix this whole numbering hotspots thing
         hotspotCounter = 1;
     },
 
@@ -122,6 +121,7 @@ let scrollBarHidden = false;
 
 function main() {
 
+    // display AR button only on supported devices
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         document.getElementById("arButton").style.display = "block";
     }
@@ -129,11 +129,13 @@ function main() {
     // modify page based on URL parameters
     let urlParams = processUrl();
 
+    // don't need to show Nasher logo if embedded
     if (urlParams.has('embedded')) {
         let logo = document.getElementById("logo");
         logo.style.display = "none";
     }
 
+    // load different collections based on parameters
 	let dataFile = defaultCollection
 	if (urlParams.has('collection')) {
 		dataFile = urlParams.get('collection');
@@ -141,8 +143,9 @@ function main() {
 	initModelData(dataFile);
 
     // Set up info button press callback
-    document.getElementById("info").onclick = pressedInfoDiv;
-    document.getElementById("infoclose").onclick = closedInfo;
+    document.getElementById("info").onclick = openInfo;
+    document.getElementById("infoclose").onclick = closeInfo;
+
 }
 
 function processUrl() {
@@ -157,7 +160,7 @@ function parseUrlParams(url) {
 	if (url.charAt(0) == '?') {
 		url = url.substring(1);
 	}
-	
+
 	// split the params
 	url = url.split('&');
 
@@ -184,6 +187,7 @@ function parseUrlParams(url) {
 	return params;
 }
 
+// initModelData() asynchronously fetches the model data and loads it
 function initModelData(fileName) {
 	let promise = fetch(`json/${fileName}.json`);
 
@@ -200,45 +204,58 @@ function initModelData(fileName) {
 		})
 }
 
+// loadModelData() loads the model data for settings & the info box
+function loadModelData() {
+    // Load in settings
+    loadViewerSettings();
+
+    // Set models for model viewer to use
+    let viewer = document.querySelector("model-viewer");
+    viewer.src = modelUpdater.modelData.objects[0].src;
+    viewer.setAttribute("ios-src", modelUpdater.modelData.objects[0].ios);
+
+    // Set up model hotspots & scrollbar
+    modelUpdater.modelViewer = viewer;
+    modelUpdater.drawHotspots(0);
+    modelUpdater.drawScrollBar(0);
+
+    // Load the object's info
+    loadObjectInfo(modelUpdater.modelData.objects[0].id);
+}
+
+// loadViewerSettings() applies the model's settings
 function loadViewerSettings() {
+    // Get settings & viewer
     let settings = modelUpdater.modelData["viewer-settings"];
     let viewer = document.querySelector("model-viewer");
 
+    // Apply auto-rotate setting
     if (settings["auto-rotate"] === true) {
         viewer.setAttribute("auto-rotate", "");
     }
 
+    // Apply skybox image
     if (settings["skybox-image"] !== null) {
         viewer.setAttribute("skybox-image", settings["skybox-image"]);
     }
 
+    // Apply rotation & shadow intensity / softness
     viewer.setAttribute("rotation-per-second", settings["rotation-per-second"]);
     viewer.setAttribute("shadow-intensity", settings["shadow-intensity"]);
     viewer.setAttribute("shadow-softness", settings["shadow-softness"]);
 
 }
 
-function loadModelData() {
-    loadViewerSettings();
-
-    let viewer = document.querySelector("model-viewer");
-	viewer.src = modelUpdater.modelData.objects[0].src;
-	viewer.setAttribute("ios-src", modelUpdater.modelData.objects[0].ios);
-    modelUpdater.modelViewer = viewer;
-    modelUpdater.drawHotspots(0);
-    modelUpdater.drawScrollBar(0);
-
-    loadObjectInfo(modelUpdater.modelData.objects[0].id);
-}
-
-function pressedInfoDiv() {
+// openInfo() opens the info box with an animation
+function openInfo() {
     let box = document.getElementById("infobox");
     box.style.display = "block";
     box.classList.remove('animate__animated', 'animate__slideOutRight')
     box.classList.add('animate__animated', 'animate__slideInRight');
 }
 
-function closedInfo() {
+// closeInfo() closes the info box with an animation
+function closeInfo() {
     let box = document.getElementById("infobox");
     box.classList.remove('animate__animated', 'animate__slideInRight')
     box.classList.add('animate__animated', 'animate__slideOutRight');
@@ -248,6 +265,7 @@ let hotspotCounter = 1;
 let expQueue = []; // store all expanded hotspots in the order that they were added
 let minQueue = []; // ...and store corresponding minimized labels for swapping on expanded close
 
+// Initialize hotspots with content and styling
 function createHotspot(hotspot, slot) {
     let newHotspot = document.createElement("div");
 
@@ -260,15 +278,16 @@ function createHotspot(hotspot, slot) {
     let minimized = document.createElement("button")
     let expanded = document.createElement("div")
 
-    let head = document.createElement("div");
-    let body = document.createElement("div");
-    let label = document.createElement("div");
-    let annotation = document.createElement("div");
-    let minLabel = document.createElement("div");
-    let prevAnnotation = document.createElement("div");
-    let close = document.createElement("button");
-    let closeIcon = document.createElement("i");
+    let head = document.createElement("div");               // contains number, title, close btn
+    let body = document.createElement("div");               // content
+    let label = document.createElement("div");              // number
+    let annotation = document.createElement("div");         // title
+    let minLabel = document.createElement("div");           // number (when minimized)
+    let prevAnnotation = document.createElement("div");     // title (when moused over)
+    let close = document.createElement("button");           // Button to close expanded
+    let closeIcon = document.createElement("i");            // FontAwesome Icon for button
 
+    // apply styling classes
     minimized.setAttribute("class", "HotspotMinimized pulse");
     expanded.setAttribute("class", "HotspotExpanded");
     head.setAttribute("class", "HotspotHead");
@@ -282,24 +301,28 @@ function createHotspot(hotspot, slot) {
     close.setAttribute("class", "HotspotClose");
     closeIcon.setAttribute("class", "HotspotCloseIcon fas fa-times");
 
+    // initialize elements with content
     body.innerHTML = hotspot.body;
     label.innerText = hotspotCounter.toString();
     minLabel.innerText = hotspotCounter.toString();
     annotation.innerText = hotspot.label;
     prevAnnotation.innerText = hotspot.label;
 
+    // expand horizontally on mouse over to display title
     minimized.onmouseover = function () {
         minimized.classList.remove("pulse");
         minimized.classList.replace("HotspotMinimized", "HotspotPreview");
         minLabel.classList.replace("HotspotMinLabel" , "HotspotPrevLabel");
     }
 
+    // retract when mouse exits
     minimized.onmouseout = function () {
         minimized.classList.add("pulse");
         minimized.classList.replace("HotspotPreview", "HotspotMinimized");
         minLabel.classList.replace("HotspotPrevLabel" , "HotspotMinLabel");
     }
 
+    // build hierarchy of elements
     close.appendChild(closeIcon);
 
     head.appendChild(label);
@@ -326,6 +349,7 @@ function createHotspot(hotspot, slot) {
 
     minimized.onclick = function () {
 
+        // If total hotspots open exceeds maximum, close least recently used
         expQueue.push(expanded);
         minQueue.push(minimized);
         if (expQueue.length > modelUpdater.modelData["max-open-hotspots"]) {
@@ -333,6 +357,7 @@ function createHotspot(hotspot, slot) {
             minQueue.shift().style.display = "block";
         }
 
+        // switch to show expanded hotspot
         minimized.style.display = "none";
         expanded.style.display = "block";
         mobileExpanded.style.display = "block";
@@ -355,6 +380,7 @@ function createHotspot(hotspot, slot) {
             }
         }
 
+        // switch to show minimized hotspot
         minimized.style.display = "block";
         expanded.style.display = "none";
         mobileExpanded.style.display = "none";
@@ -369,7 +395,7 @@ function createHotspot(hotspot, slot) {
     close.onclick = closeCallback;
     mobileExpanded.childNodes[0].childNodes[2].onclick = closeCallback;
 
-    hotspotCounter++;
+    hotspotCounter++;   // New hotspot creation complete, increment counter
     return newHotspot
 }
 
@@ -395,6 +421,7 @@ function hideModelScroll() {
 
 	// play animation
     animateCss(scrollBar, animation, "scrollbar__").then((message) => {
+        //console.log(message);
         if (scrollBarHidden) {
             let modelBar = document.getElementById("models");
             modelBar.hidden = scrollBarHidden;
