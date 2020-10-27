@@ -282,7 +282,7 @@ function createHotspot(hotspot, slot) {
     close.setAttribute("class", "HotspotClose");
     closeIcon.setAttribute("class", "HotspotCloseIcon fas fa-times");
 
-    body.innerText = hotspot.body;
+    body.innerHTML = hotspot.body;
     label.innerText = hotspotCounter.toString();
     minLabel.innerText = hotspotCounter.toString();
     annotation.innerText = hotspot.label;
